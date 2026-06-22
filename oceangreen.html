@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ocean Green Beach Resort — Trip Registration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600&family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ocean-deep:#073a42;
+    --ocean-mid:#0e5c68;
+    --coral:#ff5a36;
+    --red:#c8252b;
+    --gold:#f4b942;
+    --cream:#fff8e9;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'DM Sans',sans-serif;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(244,185,66,0.35), transparent 60%),
+      linear-gradient(180deg, var(--ocean-deep) 0%, var(--ocean-mid) 55%, #0a4750 100%);
+    min-height:100vh;
+    color:var(--cream);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:32px 16px 56px;
+    position:relative;
+    overflow-x:hidden;
+  }
+  body::before, body::after{
+    content:"";
+    position:absolute;
+    width:260px; height:260px;
+    background:radial-gradient(circle, rgba(255,255,255,0.06), transparent 70%);
+    border-radius:50%;
+    pointer-events:none;
+  }
+  body::before{ top:-60px; left:-80px; }
+  body::after{ bottom:10%; right:-100px; }
+
+  .wrap{ width:100%; max-width:480px; position:relative; z-index:1; }
+
+  /* –– HERO –– */
+  .eyebrow{
+    text-align:center;
+    letter-spacing:0.35em;
+    font-size:12px;
+    font-weight:700;
+    color:var(--gold);
+    margin-bottom:6px;
+    opacity:0;
+    animation:riseIn .6s ease forwards;
+  }
+  .presents{
+    text-align:center;
+    font-family:'Caveat',cursive;
+    font-size:22px;
+    color:rgba(255,248,233,0.75);
+    margin:0 0 6px;
+    opacity:0;
+    animation:riseIn .6s .08s ease forwards;
+  }
+  h1{
+    font-family:'Anton',sans-serif;
+    text-transform:uppercase;
+    text-align:center;
+    font-size:clamp(34px,9vw,48px);
+    line-height:0.95;
+    margin:0 0 14px;
+    letter-spacing:0.01em;
+    background:linear-gradient(180deg,#fff 0%, var(--gold) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-shadow:0 4px 0 rgba(200,37,43,0.35);
+    opacity:0;
+    animation:riseIn .6s .16s ease forwards;
+  }
+  .meta-row{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:28px;
+    opacity:0;
+    animation:riseIn .6s .26s ease forwards;
+  }
+  .meta-pill{
+    background:rgba(255,248,233,0.1);
+    border:1px solid rgba(244,185,66,0.4);
+    border-radius:999px;
+    padding:7px 16px;
+    font-size:13px;
+    font-weight:700;
+    color:var(--cream);
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .meta-pill b{ color:var(--gold); }
+
+  .countdown{
+    text-align:center;
+    margin-bottom:28px;
+    opacity:0;
+    animation:riseIn .6s .3s ease forwards;
+  }
+  .countdown-label{
+    font-size:11px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:rgba(255,248,233,0.55);
+    margin-bottom:10px;
+    font-weight:700;
+  }
+  .countdown-units{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+  }
+  .cd-unit{
+    background:rgba(255,248,233,0.08);
+    border:1px solid rgba(244,185,66,0.35);
+    border-radius:12px;
+    padding:10px 14px;
+    min-width:58px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .cd-num{
+    font-family:'Anton',sans-serif;
+    font-size:22px;
+    color:var(--gold);
+    line-height:1;
+  }
+  .cd-tag{
+    font-size:10px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:rgba(255,248,233,0.55);
+    margin-top:4px;
+    font-weight:600;
+  }
+  .countdown.expired .countdown-label{ color:var(--coral); }
+  .countdown.expired .cd-num{ color:var(--coral); }
+
+  @keyframes riseIn{
+    from{ opacity:0; transform:translateY(10px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  /* –– TICKET CARD –– */
+  .ticket-stage{ perspective:1400px; }
+  .ticket{
+    position:relative;
+    background:var(--cream);
+    color:var(--ocean-deep);
+    border-radius:18px;
+    box-shadow:0 24px 50px -16px rgba(0,0,0,0.55);
+    overflow:hidden;
+    opacity:0;
+    animation:riseIn .6s .34s ease forwards;
+  }
+  .ticket-top{
+    background:linear-gradient(135deg, var(--coral), var(--red));
+    padding:18px 22px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .ticket-top .label{
+    font-family:'Anton',sans-serif;
+    letter-spacing:0.05em;
+    font-size:18px;
+    color:#fff;
+    text-transform:uppercase;
+  }
+  .ticket-top .tag{
+    font-size:11px;
+    font-weight:700;
+    color:rgba(255,255,255,0.85);
+    border:1.5px solid rgba(255,255,255,0.7);
+    border-radius:6px;
+    padding:3px 8px;
+    letter-spacing:0.06em;
+  }
+
+  .perforation{
+    position:relative;
+    height:0;
+    border-top:2px dashed rgba(7,58,66,0.25);
+    margin:0 18px;
+  }
+  .perforation::before, .perforation::after{
+    content:"";
+    position:absolute;
+    top:-12px;
+    width:24px; height:24px;
+    background:var(--ocean-deep);
+    border-radius:50%;
+  }
+  .perforation::before{ left:-30px; }
+  .perforation::after{ right:-30px; }
+
+  .ticket-body{ padding:24px 22px 22px; }
+
+  .field{ margin-bottom:16px; }
+  .field label{
+    display:block;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ocean-mid);
+    margin-bottom:6px;
+  }
+  .field input{
+    width:100%;
+    border:2px solid rgba(14,92,104,0.18);
+    background:#fffdf6;
+    border-radius:10px;
+    padding:13px 14px;
+    font-size:15px;
+    font-family:'DM Sans',sans-serif;
+    color:var(--ocean-deep);
+    outline:none;
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  .field input::placeholder{ color:rgba(7,58,66,0.35); }
+  .field input:focus{
+    border-color:var(--coral);
+    box-shadow:0 0 0 4px rgba(255,90,54,0.14);
+  }
+  .field .err{
+    display:none;
+    font-size:12px;
+    color:var(--red);
+    font-weight:700;
+    margin-top:5px;
+  }
+  .field.invalid input{ border-color:var(--red); }
+  .field.invalid .err{ display:block; }
+
+  .choice-row{
+    display:flex;
+    gap:10px;
+  }
+  .choice-btn{
+    flex:1;
+    border:2px solid rgba(14,92,104,0.18);
+    background:#fffdf6;
+    border-radius:10px;
+    padding:12px 10px;
+    font-family:'DM Sans',sans-serif;
+    font-size:14px;
+    font-weight:700;
+    color:var(--ocean-mid);
+    cursor:pointer;
+    transition:border-color .15s ease, background .15s ease, color .15s ease, transform .1s ease;
+  }
+  .choice-btn:hover{ transform:translateY(-1px); }
+  .choice-btn.selected{
+    border-color:var(--coral);
+    background:linear-gradient(135deg, var(--coral), var(--red));
+    color:#fff;
+  }
+  .field.invalid .choice-btn{ border-color:var(--red); }
+
+  .payday-box{
+    display:none;
+    background:rgba(244,185,66,0.1);
+    border:1.5px dashed var(--gold);
+    border-radius:12px;
+    padding:14px 16px 16px;
+  }
+  .payday-box.show{ display:block; }
+  .payday-box label{ color:var(--ocean-deep); }
+  .payday-box input{
+    width:100%;
+    border:2px solid rgba(14,92,104,0.18);
+    background:#fffdf6;
+    border-radius:10px;
+    padding:12px 14px;
+    font-size:15px;
+    font-family:'DM Sans',sans-serif;
+    color:var(--ocean-deep);
+    outline:none;
+  }
+  .payday-box input:focus{
+    border-color:var(--coral);
+    box-shadow:0 0 0 4px rgba(255,90,54,0.14);
+  }
+  .payday-note{
+    font-size:12px;
+    color:var(--red);
+    font-weight:700;
+    margin-top:8px;
+    line-height:1.4;
+  }
+
+  .submit-btn{
+    width:100%;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg, var(--coral), var(--red));
+    color:#fff;
+    font-family:'Anton',sans-serif;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    font-size:17px;
+    padding:15px;
+    cursor:pointer;
+    margin-top:6px;
+    box-shadow:0 10px 24px -8px rgba(200,37,43,0.6);
+    transition:transform .12s ease, box-shadow .12s ease, opacity .2s ease;
+  }
+  .submit-btn:hover{ transform:translateY(-2px); box-shadow:0 14px 28px -8px rgba(200,37,43,0.7); }
+  .submit-btn:active{ transform:translateY(0); }
+  .submit-btn:disabled{ opacity:0.6; cursor:not-allowed; transform:none; }
+
+  .ticket-foot{
+    text-align:center;
+    font-size:11px;
+    color:rgba(7,58,66,0.55);
+    padding:10px 22px 18px;
+    font-weight:500;
+  }
+
+  /* footer */
+  .footer-note{
+    text-align:center;
+    font-size:12px;
+    color:rgba(255,248,233,0.55);
+    margin-top:22px;
+    line-height:1.6;
+  }
+  .admin-link{
+    background:none;
+    border:none;
+    color:rgba(255,248,233,0.35);
+    font-size:11px;
+    text-decoration:underline;
+    cursor:pointer;
+    margin-top:14px;
+    font-family:'DM Sans',sans-serif;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  /* admin */
+  .admin-panel{
+    display:none;
+    margin-top:16px;
+    background:rgba(255,248,233,0.06);
+    border:1px solid rgba(244,185,66,0.25);
+    border-radius:14px;
+    padding:16px;
+  }
+  .admin-panel.show{ display:block; }
+  .admin-panel h3{
+    font-family:'Anton',sans-serif;
+    text-transform:uppercase;
+    font-size:14px;
+    color:var(--gold);
+    margin:0 0 12px;
+    letter-spacing:0.04em;
+  }
+  .admin-login{ display:flex; gap:8px; }
+  .admin-login input{
+    flex:1;
+    border:2px solid rgba(244,185,66,0.3);
+    background:rgba(255,248,233,0.08);
+    border-radius:8px;
+    padding:10px 12px;
+    font-size:14px;
+    color:var(--cream);
+    outline:none;
+  }
+  .admin-login input::placeholder{ color:rgba(255,248,233,0.4); }
+  .admin-login button{
+    border:none;
+    border-radius:8px;
+    background:var(--gold);
+    color:var(--ocean-deep);
+    font-weight:700;
+    font-size:13px;
+    padding:0 16px;
+    cursor:pointer;
+  }
+  .admin-error{
+    font-size:12px;
+    color:var(--coral);
+    margin-top:8px;
+    display:none;
+  }
+  .admin-table-wrap{ display:none; }
+  .admin-toolbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+  }
+  .admin-count{ font-size:12px; color:rgba(255,248,233,0.6); }
+  .admin-refresh{
+    background:none;
+    border:1px solid rgba(244,185,66,0.4);
+    color:var(--gold);
+    font-size:11px;
+    border-radius:6px;
+    padding:5px 10px;
+    cursor:pointer;
+  }
+  .admin-row{
+    border-bottom:1px solid rgba(255,248,233,0.08);
+    padding:10px 0;
+    font-size:12.5px;
+  }
+  .admin-row:last-child{ border-bottom:none; }
+  .admin-row .nm{ font-weight:700; color:var(--cream); }
+  .admin-row .meta{ color:rgba(255,248,233,0.55); margin-top:2px; }
+  .admin-row .tags{ margin-top:6px; display:flex; gap:6px; flex-wrap:wrap; }
+  .admin-tag{
+    font-size:10.5px;
+    font-weight:700;
+    padding:2px 8px;
+    border-radius:999px;
+  }
+  .admin-tag.yes{ background:rgba(46,204,113,0.18); color:#6fe39a; }
+  .admin-tag.no{ background:rgba(255,90,54,0.18); color:#ff9678; }
+  .admin-tag.date{ background:rgba(244,185,66,0.18); color:var(--gold); }
+  .admin-empty, .admin-loading{ font-size:12px; color:rgba(255,248,233,0.5); padding:6px 0; }
+  .admin-export{
+    margin-top:12px;
+    background:none;
+    border:1px solid rgba(255,248,233,0.25);
+    color:var(--cream);
+    font-size:11px;
+    border-radius:6px;
+    padding:7px 12px;
+    cursor:pointer;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="eyebrow">WILGRAY TOUR</div>
+    <div class="presents">presents a trip to</div>
+    <h1>Ocean Green<br>Beach Resort</h1>
+    <div class="meta-row">
+      <div class="meta-pill">📅 <b>3rd July, 2026</b></div>
+      <div class="meta-pill">⏰ <b>8:00 AM</b></div>
+    </div>
+    <div class="countdown" id="countdown">
+      <div class="countdown-label">Trip starts in</div>
+      <div class="countdown-units">
+        <div class="cd-unit"><span class="cd-num" id="cdDays">00</span><span class="cd-tag">days</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cdHours">00</span><span class="cd-tag">hrs</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cdMins">00</span><span class="cd-tag">min</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cdSecs">00</span><span class="cd-tag">sec</span></div>
+      </div>
+    </div>
+
+    <div class="ticket-stage">
+      <div class="ticket" id="ticket">
+        <div class="ticket-top">
+          <span class="label">Boarding Pass</span>
+          <span class="tag">Reserve a seat</span>
+        </div>
+        <div class="perforation"></div>
+        <div class="ticket-body">
+          <form id="regForm" novalidate>
+            <div class="field" id="nameField">
+              <label for="fullName">Full name</label>
+              <input type="text" id="fullName" placeholder="e.g. Akosua Mensah" autocomplete="name">
+              <div class="err">Please enter your full name.</div>
+            </div>
+            <div class="field" id="locField">
+              <label for="location">Location</label>
+              <input type="text" id="location" placeholder="e.g. East Legon, Accra" autocomplete="address-level2">
+              <div class="err">Please enter your location.</div>
+            </div>
+            <div class="field" id="phoneField">
+              <label for="phone">Telephone number</label>
+              <input type="tel" id="phone" placeholder="e.g. 054 216 5661" autocomplete="tel">
+              <div class="err">Please enter a valid phone number.</div>
+            </div>
+
+            <div class="field" id="interestField">
+              <label>Are you still interested in this trip?</label>
+              <div class="choice-row">
+                <button type="button" class="choice-btn" data-group="interest" data-value="yes">Yes, I'm in</button>
+                <button type="button" class="choice-btn" data-group="interest" data-value="no">No, not anymore</button>
+              </div>
+              <div class="err">Please let us know if you're still interested.</div>
+            </div>
+
+            <div class="field" id="paidField">
+              <label>Have you made payment?</label>
+              <div class="choice-row">
+                <button type="button" class="choice-btn" data-group="paid" data-value="yes">Yes, paid</button>
+                <button type="button" class="choice-btn" data-group="paid" data-value="no">Not yet</button>
+              </div>
+              <div class="err">Please let us know your payment status.</div>
+            </div>
+
+            <div class="field payday-box" id="paydayField">
+              <label for="payDate">When will you make payment?</label>
+              <input type="date" id="payDate" max="2026-06-25">
+              <div class="payday-note">⚠️ Deadline for payment is <b>25th June, 2026</b>.</div>
+              <div class="err">Please select a payment date.</div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">Reserve My Spot →</button>
+          </form>
+        </div>
+        <div class="ticket-foot">All packages include transportation, activities &amp; beach entrance</div>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      Call / WhatsApp: 054 216 5661<br>
+      GHC 220 food only · GHC 250 food &amp; snacks · GHC 300 breakfast, lunch &amp; snacks
+    </div>
+
+    <button type="button" class="admin-link" id="adminToggle">Organizer login</button>
+    <div class="admin-panel" id="adminPanel">
+      <h3>Registered Travelers</h3>
+      <div class="admin-login" id="adminLoginBox">
+        <input type="password" id="adminPassword" placeholder="Enter organizer password">
+        <button type="button" id="adminLoginBtn">Enter</button>
+      </div>
+      <div class="admin-error" id="adminError">Incorrect password.</div>
+      <div class="admin-table-wrap" id="adminTableWrap">
+        <div class="admin-toolbar">
+          <span class="admin-count" id="adminCount">0 registrations</span>
+          <button type="button" class="admin-refresh" id="adminRefresh">Refresh</button>
+        </div>
+        <div id="adminList" class="admin-loading">Loading…</div>
+        <button type="button" class="admin-export" id="adminExport">Export CSV</button>
+      </div>
+    </div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // ===== Supabase config — replace with your project's values =====
+  const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+  const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+  const ADMIN_PASSWORD = 'wilgray2026'; // change this to whatever you want
+
+  const supabaseClient = (SUPABASE_URL.startsWith('http'))
+    ? supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+    : null;
+</script>
+<script>
+  // ---- Countdown ----
+  const tripDate = new Date('2026-07-03T08:00:00');
+  const cdEl = document.getElementById('countdown');
+  const cdDays = document.getElementById('cdDays');
+  const cdHours = document.getElementById('cdHours');
+  const cdMins = document.getElementById('cdMins');
+  const cdSecs = document.getElementById('cdSecs');
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  function updateCountdown(){
+    const now = new Date();
+    const diff = tripDate - now;
+    if(diff <= 0){
+      cdEl.classList.add('expired');
+      document.querySelector('.countdown-label').textContent = "It's trip day!";
+      cdDays.textContent = '00';
+      cdHours.textContent = '00';
+      cdMins.textContent = '00';
+      cdSecs.textContent = '00';
+      return;
+    }
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff / (1000*60*60)) % 24);
+    const mins = Math.floor((diff / (1000*60)) % 60);
+    const secs = Math.floor((diff / 1000) % 60);
+    cdDays.textContent = pad(days);
+    cdHours.textContent = pad(hours);
+    cdMins.textContent = pad(mins);
+    cdSecs.textContent = pad(secs);
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ---- Form ----
+  const form = document.getElementById('regForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const interestField = document.getElementById('interestField');
+  const paidField = document.getElementById('paidField');
+  const paydayField = document.getElementById('paydayField');
+  const payDateInput = document.getElementById('payDate');
+
+  const fields = {
+    fullName: { el: document.getElementById('fullName'), wrap: document.getElementById('nameField'), validate: v => v.trim().length >= 2 },
+    location: { el: document.getElementById('location'), wrap: document.getElementById('locField'), validate: v => v.trim().length >= 2 },
+    phone: { el: document.getElementById('phone'), wrap: document.getElementById('phoneField'), validate: v => v.replace(/[^0-9]/g,'').length >= 9 }
+  };
+
+  function clearError(key){
+    fields[key].wrap.classList.remove('invalid');
+  }
+  Object.keys(fields).forEach(k => {
+    fields[k].el.addEventListener('input', () => clearError(k));
+  });
+
+  // Choice buttons (interest / paid)
+  let selections = { interest: null, paid: null };
+
+  document.querySelectorAll('.choice-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const group = btn.dataset.group;
+      const value = btn.dataset.value;
+      selections[group] = value;
+
+      document.querySelectorAll(`.choice-btn[data-group="${group}"]`).forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+
+      if(group === 'interest'){
+        interestField.classList.remove('invalid');
+      }
+      if(group === 'paid'){
+        paidField.classList.remove('invalid');
+        if(value === 'no'){
+          paydayField.classList.add('show');
+        } else {
+          paydayField.classList.remove('show');
+          paydayField.classList.remove('invalid');
+          payDateInput.value = '';
+        }
+      }
+    });
+  });
+
+  payDateInput.addEventListener('input', () => paydayField.classList.remove('invalid'));
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    let valid = true;
+
+    Object.keys(fields).forEach(k => {
+      const f = fields[k];
+      if(!f.validate(f.el.value)){
+        f.wrap.classList.add('invalid');
+        valid = false;
+      } else {
+        f.wrap.classList.remove('invalid');
+      }
+    });
+
+    if(!selections.interest){
+      interestField.classList.add('invalid');
+      valid = false;
+    }
+    if(!selections.paid){
+      paidField.classList.add('invalid');
+      valid = false;
+    }
+    if(selections.paid === 'no' && !payDateInput.value){
+      paydayField.classList.add('invalid');
+      valid = false;
+    }
+
+    if(!valid) return;
+
+    const entry = {
+      name: fields.fullName.el.value.trim(),
+      location: fields.location.el.value.trim(),
+      phone: fields.phone.el.value.trim(),
+      interested: selections.interest === 'yes' ? 'Yes' : 'No',
+      paid: selections.paid === 'yes' ? 'Yes' : 'No',
+      payDate: selections.paid === 'no' ? payDateInput.value : null
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Saving…';
+
+    if(supabaseClient){
+      try {
+        const { error } = await supabaseClient.from('registrations').insert({
+          name: entry.name,
+          location: entry.location,
+          phone: entry.phone,
+          interested: entry.interested,
+          paid: entry.paid,
+          pay_date: entry.payDate
+        });
+        if(error) console.error('Supabase insert error:', error);
+      } catch(err){
+        console.error('Could not save to Supabase:', err);
+      }
+    }
+
+    submitBtn.textContent = 'Opening WhatsApp…';
+
+    let msg = `Hi! Here's my response for the Ocean Green Beach Resort trip (3rd July).\n`;
+    msg += `Name: ${entry.name}\n`;
+    msg += `Location: ${entry.location}\n`;
+    msg += `Phone: ${entry.phone}\n`;
+    msg += `Still interested: ${entry.interested}\n`;
+    msg += `Paid: ${entry.paid}\n`;
+    if(entry.payDate){
+      msg += `Will pay on: ${entry.payDate} (deadline 25th June, 2026)\n`;
+    }
+
+    const waText = encodeURIComponent(msg);
+    window.open(`https://wa.me/233542165661?text=${waText}`, '_blank', 'noopener');
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Reserve My Spot →';
+    form.reset();
+    selections = { interest: null, paid: null };
+    document.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
+    paydayField.classList.remove('show');
+  });
+
+  // ---- Admin panel ----
+  const adminToggle = document.getElementById('adminToggle');
+  const adminPanel = document.getElementById('adminPanel');
+  const adminLoginBox = document.getElementById('adminLoginBox');
+  const adminPassword = document.getElementById('adminPassword');
+  const adminLoginBtn = document.getElementById('adminLoginBtn');
+  const adminError = document.getElementById('adminError');
+  const adminTableWrap = document.getElementById('adminTableWrap');
+  const adminList = document.getElementById('adminList');
+  const adminCount = document.getElementById('adminCount');
+  const adminRefresh = document.getElementById('adminRefresh');
+  const adminExport = document.getElementById('adminExport');
+  let lastEntries = [];
+
+  adminToggle.addEventListener('click', () => {
+    adminPanel.classList.toggle('show');
+  });
+
+  adminLoginBtn.addEventListener('click', () => {
+    if(adminPassword.value === ADMIN_PASSWORD){
+      adminError.style.display = 'none';
+      adminLoginBox.style.display = 'none';
+      adminTableWrap.style.display = 'block';
+      loadRegistrations();
+    } else {
+      adminError.style.display = 'block';
+    }
+  });
+  adminPassword.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter') adminLoginBtn.click();
+  });
+
+  adminRefresh.addEventListener('click', loadRegistrations);
+
+  async function loadRegistrations(){
+    if(!supabaseClient){
+      adminList.className = 'admin-empty';
+      adminList.textContent = 'Supabase is not configured yet. Add your project URL and anon key in the code.';
+      return;
+    }
+    adminList.className = 'admin-loading';
+    adminList.textContent = 'Loading…';
+    try {
+      const { data, error } = await supabaseClient
+        .from('registrations')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if(error) throw error;
+
+      lastEntries = data || [];
+      adminCount.textContent = `${lastEntries.length} registration${lastEntries.length === 1 ? '' : 's'}`;
+
+      if(lastEntries.length === 0){
+        adminList.className = 'admin-empty';
+        adminList.textContent = 'No registrations yet.';
+        return;
+      }
+
+      adminList.className = '';
+      adminList.innerHTML = lastEntries.map(e => `
+        <div class="admin-row">
+          <div class="nm">${escapeHtml(e.name)}</div>
+          <div class="meta">${escapeHtml(e.location)} · ${escapeHtml(e.phone)}</div>
+          <div class="tags">
+            <span class="admin-tag ${e.interested === 'Yes' ? 'yes' : 'no'}">Interested: ${escapeHtml(e.interested)}</span>
+            <span class="admin-tag ${e.paid === 'Yes' ? 'yes' : 'no'}">Paid: ${escapeHtml(e.paid)}</span>
+            ${e.pay_date ? `<span class="admin-tag date">Pays: ${escapeHtml(e.pay_date)}</span>` : ''}
+          </div>
+        </div>
+      `).join('');
+    } catch(err){
+      console.error('Could not load registrations:', err);
+      adminList.className = 'admin-empty';
+      adminList.textContent = 'Could not load registrations right now.';
+    }
+  }
+
+  adminExport.addEventListener('click', () => {
+    if(!lastEntries.length) return;
+    const headers = ['Name','Location','Phone','Interested','Paid','Pay Date','Submitted At'];
+    const rows = lastEntries.map(e => [
+      e.name, e.location, e.phone, e.interested, e.paid, e.pay_date || '', e.created_at || ''
+    ]);
+    const csv = [headers, ...rows]
+      .map(r => r.map(v => `"${String(v).replace(/"/g,'""')}"`).join(','))
+      .join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'oceangreen-registrations.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  function escapeHtml(str){
+    const d = document.createElement('div');
+    d.textContent = str == null ? '' : String(str);
+    return d.innerHTML;
+  }
+</script>
+
+</body>
+</html>
