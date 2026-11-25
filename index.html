@@ -2,834 +2,406 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ocean Green Beach Resort — Trip Registration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wilgray Tour – Shai Hills and Sajuna</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600&family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --ocean-deep:#073a42;
-    --ocean-mid:#0e5c68;
-    --coral:#ff5a36;
-    --red:#c8252b;
-    --gold:#f4b942;
-    --cream:#fff8e9;
-  }
-  *{box-sizing:border-box;}
-  body{
-    margin:0;
-    font-family:'DM Sans',sans-serif;
-    background:
-      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(244,185,66,0.35), transparent 60%),
-      linear-gradient(180deg, var(--ocean-deep) 0%, var(--ocean-mid) 55%, #0a4750 100%);
-    min-height:100vh;
-    color:var(--cream);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    padding:32px 16px 56px;
-    position:relative;
-    overflow-x:hidden;
-  }
-  body::before, body::after{
-    content:"";
-    position:absolute;
-    width:260px; height:260px;
-    background:radial-gradient(circle, rgba(255,255,255,0.06), transparent 70%);
-    border-radius:50%;
-    pointer-events:none;
-  }
-  body::before{ top:-60px; left:-80px; }
-  body::after{ bottom:10%; right:-100px; }
+:root{
+  --red:#c8252b; --red-d:#9f1a20; --navy:#0d2a5c; --sky:#2f7fd0; --sky-l:#bfe0f5;
+  --straw:#e9b44c; --grass:#c99a4a; --ink:#10213f; --paper:#fff; --mist:#f2f6fb;
+}
+@media (prefers-color-scheme: dark){ :root{ --paper:#fff; } }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(--mist);-webkit-font-smoothing:antialiased}
+.page{max-width:520px;margin:0 auto;background:var(--paper);box-shadow:0 0 60px rgba(13,42,92,.18);min-height:100vh}
 
-  .wrap{ width:100%; max-width:480px; position:relative; z-index:1; }
+/* HERO */
+.hero{position:relative;background:linear-gradient(180deg,var(--sky) 0%,#5fa4e0 45%,var(--sky-l) 100%);padding:28px 20px 210px;text-align:center;overflow:hidden}
+.brand,.trip-to,h1{position:relative;z-index:2}
+.brand{color:#fff;font-weight:800;font-size:17px;letter-spacing:.02em;line-height:1.1}
+.brand small{display:block;font-size:12px;font-weight:700;opacity:.9}
+.trip-to{font-weight:800;color:#fff;font-size:clamp(44px,14vw,66px);line-height:1;margin:16px 0 2px;letter-spacing:-.02em;text-shadow:0 3px 14px rgba(13,42,92,.35)}
+h1{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;color:var(--red);font-size:clamp(38px,12.5vw,58px);line-height:1;margin:0;letter-spacing:.005em;text-shadow:0 2px 0 rgba(255,255,255,.55)}
+.sun{animation:glow 6s ease-in-out infinite alternate}
+@keyframes glow{from{opacity:.75;transform:scale(1)}to{opacity:1;transform:scale(1.12)}}
+.cloud{position:absolute;height:26px;border-radius:50px;background:rgba(255,255,255,.85);filter:blur(1.5px);animation:cloud linear infinite}
+.cloud::before,.cloud::after{content:"";position:absolute;background:inherit;border-radius:50%}
+.cloud::before{width:34px;height:34px;left:14px;top:-16px}.cloud::after{width:24px;height:24px;left:40px;top:-10px}
+.c1{width:90px;top:150px;left:-120px;animation-duration:70s;opacity:.8}
+.c2{width:64px;top:96px;left:-120px;animation-duration:95s;animation-delay:-40s;opacity:.6;transform:scale(.8)}
+@keyframes cloud{to{left:110%}}
+.scene{position:absolute;left:0;right:0;bottom:0;height:200px;pointer-events:none}
+.layer{position:absolute;left:0;bottom:0;width:200%;display:flex;animation:scroll linear infinite;will-change:transform}
+.layer svg{width:50%;height:100%;display:block}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.l-far{height:150px;bottom:44px;animation-duration:90s}
+.l-mid{height:118px;bottom:34px;animation-duration:48s}
+.l-tree{height:132px;bottom:32px;animation-duration:20s}
+.l-ground{height:54px;animation-duration:7s}
+.l-beach{height:170px;bottom:30px;width:600%;animation-duration:60s}
+.foam{animation:lap 2.6s ease-in-out infinite alternate}
+.foam.f2{animation-delay:-1.3s}
+@keyframes lap{from{transform:translateY(-1.5px);opacity:.95}to{transform:translateY(1.5px);opacity:.55}}
+.tw{animation:tw 2.2s ease-in-out infinite}
+.tw:nth-child(2n){animation-delay:-.7s}.tw:nth-child(3n){animation-delay:-1.4s}
+@keyframes tw{0%,100%{opacity:.1}50%{opacity:.95}}
+.boat{transform-box:fill-box;transform-origin:50% 100%;animation:bob 2.6s ease-in-out infinite alternate}
+@keyframes bob{from{transform:translateY(-1px) rotate(-3deg)}to{transform:translateY(1.6px) rotate(3deg)}}
+.fr{transform-box:fill-box;transform-origin:50% 100%;animation:sway 3.4s ease-in-out infinite alternate}
+.fr.b{animation-delay:-1.6s;animation-duration:4s}
+@keyframes sway{from{transform:rotate(-3.5deg)}to{transform:rotate(3.5deg)}}
+.gull{position:absolute;z-index:1;left:-40px;width:26px;animation:fly linear infinite}
+.gull svg{width:100%;display:block;overflow:visible}
+.gull .wing{transform-box:fill-box;transform-origin:50% 100%;animation:flap .5s ease-in-out infinite alternate}
+.g1{top:118px;animation-duration:24s;animation-delay:-6s}
+.g2{top:92px;width:19px;animation-duration:31s;animation-delay:-18s}
+@keyframes fly{to{left:112%}}
+@keyframes flap{from{transform:scaleY(1)}to{transform:scaleY(-.55)}}
+.mk{position:absolute;left:-8px;bottom:32px;width:150px;height:150px}
+.mk .tail{transform-box:fill-box;transform-origin:0% 100%;animation:tail 1.6s ease-in-out infinite alternate}
+.mk .m2 .tail{animation-delay:-.5s}.mk .m3 .tail{animation-delay:-1.1s}
+.mk .head{animation:nod 3.2s ease-in-out infinite}
+@keyframes tail{from{transform:rotate(-9deg)}to{transform:rotate(10deg)}}
+@keyframes nod{50%{transform:translateY(-1px) rotate(4deg)}}
+.jeep{position:absolute;left:50%;bottom:18px;width:176px;margin-left:-60px;animation:drive 2.2s cubic-bezier(.15,.7,.2,1) both}
+@keyframes drive{from{transform:translateX(-420px)}to{transform:translateX(0)}}
+.jeep svg{width:100%;display:block;overflow:visible}
+.rig{transform-box:fill-box;transform-origin:50% 100%;animation:ride .55s ease-in-out infinite alternate}
+@keyframes ride{from{transform:translateY(0) rotate(-.4deg)}to{transform:translateY(-1.6px) rotate(.5deg)}}
+.wheel{transform-box:fill-box;transform-origin:center;animation:spin .45s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.dust circle{transform-box:fill-box;transform-origin:center;fill:#e8cf9b;opacity:0;animation:puff 1.1s ease-out infinite}
+.dust circle:nth-child(2){animation-delay:.27s}.dust circle:nth-child(3){animation-delay:.55s}.dust circle:nth-child(4){animation-delay:.82s}
+@keyframes puff{0%{opacity:.7;transform:translate(0,0) scale(.3)}100%{opacity:0;transform:translate(-46px,-14px) scale(1.9)}}
 
-  /* –– HERO –– */
-  .eyebrow{
-    text-align:center;
-    letter-spacing:0.35em;
-    font-size:12px;
-    font-weight:700;
-    color:var(--gold);
-    margin-bottom:6px;
-    opacity:0;
-    animation:riseIn .6s ease forwards;
-  }
-  .presents{
-    text-align:center;
-    font-family:'Caveat',cursive;
-    font-size:22px;
-    color:rgba(255,248,233,0.75);
-    margin:0 0 6px;
-    opacity:0;
-    animation:riseIn .6s .08s ease forwards;
-  }
-  h1{
-    font-family:'Anton',sans-serif;
-    text-transform:uppercase;
-    text-align:center;
-    font-size:clamp(34px,9vw,48px);
-    line-height:0.95;
-    margin:0 0 14px;
-    letter-spacing:0.01em;
-    background:linear-gradient(180deg,#fff 0%, var(--gold) 100%);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-    text-shadow:0 4px 0 rgba(200,37,43,0.35);
-    opacity:0;
-    animation:riseIn .6s .16s ease forwards;
-  }
-  .meta-row{
-    display:flex;
-    justify-content:center;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-bottom:28px;
-    opacity:0;
-    animation:riseIn .6s .26s ease forwards;
-  }
-  .meta-pill{
-    background:rgba(255,248,233,0.1);
-    border:1px solid rgba(244,185,66,0.4);
-    border-radius:999px;
-    padding:7px 16px;
-    font-size:13px;
-    font-weight:700;
-    color:var(--cream);
-    display:flex;
-    align-items:center;
-    gap:6px;
-  }
-  .meta-pill b{ color:var(--gold); }
+/* DATE */
+.when{background:var(--paper);text-align:center;padding:22px 18px 6px}
+.date{font-weight:800;font-size:clamp(19px,5.6vw,24px);letter-spacing:.01em;text-transform:uppercase;color:var(--ink)}
+.cd{display:flex;justify-content:center;gap:8px;margin-top:14px}
+.cd div{background:var(--navy);color:#fff;border-radius:10px;min-width:62px;padding:9px 6px 7px}
+.cd b{display:block;font-family:'Anton',sans-serif;font-weight:400;font-size:26px;line-height:1}
+.cd span{font-size:11px;opacity:.75;font-weight:600}
+.cd-label{margin-top:10px;font-size:13px;color:#4a5b7d;font-weight:600}
 
-  .countdown{
-    text-align:center;
-    margin-bottom:28px;
-    opacity:0;
-    animation:riseIn .6s .3s ease forwards;
-  }
-  .countdown-label{
-    font-size:11px;
-    letter-spacing:0.18em;
-    text-transform:uppercase;
-    color:rgba(255,248,233,0.55);
-    margin-bottom:10px;
-    font-weight:700;
-  }
-  .countdown-units{
-    display:flex;
-    justify-content:center;
-    gap:10px;
-  }
-  .cd-unit{
-    background:rgba(255,248,233,0.08);
-    border:1px solid rgba(244,185,66,0.35);
-    border-radius:12px;
-    padding:10px 14px;
-    min-width:58px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-  }
-  .cd-num{
-    font-family:'Anton',sans-serif;
-    font-size:22px;
-    color:var(--gold);
-    line-height:1;
-  }
-  .cd-tag{
-    font-size:10px;
-    letter-spacing:0.08em;
-    text-transform:uppercase;
-    color:rgba(255,248,233,0.55);
-    margin-top:4px;
-    font-weight:600;
-  }
-  .countdown.expired .countdown-label{ color:var(--coral); }
-  .countdown.expired .cd-num{ color:var(--coral); }
+/* PRICES */
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:20px 14px 0}
+.price{background:var(--red);color:#fff;border-radius:10px;padding:14px 6px 12px;text-align:center;display:flex;flex-direction:column;justify-content:space-between;min-height:104px}
+.price .amt{font-family:'Anton',sans-serif;font-size:clamp(22px,6.4vw,30px);line-height:1}
+.price .what{font-size:11.5px;font-weight:800;line-height:1.2;margin-top:8px;text-transform:uppercase}
+.nb{margin:10px 14px 0;background:var(--navy);color:#fff;border-radius:8px;padding:11px 14px;font-size:12px;font-weight:700;line-height:1.5;text-align:center;text-transform:uppercase}
 
-  @keyframes riseIn{
-    from{ opacity:0; transform:translateY(10px); }
-    to{ opacity:1; transform:translateY(0); }
-  }
+/* FORM */
+.reserve{padding:26px 14px 8px}
+.reserve h2{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:26px;margin:0 0 4px;color:var(--navy)}
+.reserve p.lead{margin:0 0 18px;color:#4a5b7d;font-size:14px}
+.card{border:2px solid var(--navy);border-radius:14px;overflow:hidden}
+.card-top{background:var(--red);color:#fff;padding:13px 18px;display:flex;justify-content:space-between;align-items:center;font-family:'Anton',sans-serif;font-size:18px;text-transform:uppercase;letter-spacing:.04em}
+.card-top span:last-child{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;border:1.5px solid rgba(255,255,255,.8);border-radius:6px;padding:3px 8px;letter-spacing:.03em}
+form{padding:20px 18px 18px}
+.field{margin-bottom:16px}
+.field>label,.field>.lbl{display:block;font-size:13px;font-weight:800;color:var(--navy);margin-bottom:6px}
+input[type=text],input[type=tel],input[type=date],input[type=email],input[type=password]{width:100%;font:inherit;font-size:16px;padding:12px 13px;border:2px solid #cfd9e8;border-radius:9px;background:#fff;color:var(--ink);outline:none}
+input:focus{border-color:var(--red);box-shadow:0 0 0 4px rgba(200,37,43,.14)}
+.choices{display:grid;gap:8px}
+.choices.two{grid-template-columns:1fr 1fr}
+.choice{font:inherit;font-weight:700;font-size:14px;line-height:1.25;padding:12px 8px;border:2px solid #cfd9e8;background:#fff;color:var(--ink);border-radius:9px;cursor:pointer;text-align:center}
+.choice:hover{border-color:var(--navy)}
+.choice:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+.choice.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.choice .p{display:block;font-family:'Anton',sans-serif;font-weight:400;font-size:20px;color:var(--red)}
+.choice.on .p{color:var(--straw)}
+.choice small{display:block;font-size:12px;font-weight:500;opacity:.8}
+.err{display:none;color:var(--red-d);font-size:13px;font-weight:700;margin-top:6px}
+.invalid .err{display:block}
+.invalid input,.invalid .choice{border-color:var(--red)}
+.pay-box{display:none;background:#fff4dc;border:2px dashed var(--straw);border-radius:10px;padding:14px}
+.pay-box.show{display:block}
+.pay-box .note{font-size:13px;margin-top:8px;font-weight:600}
+.go{width:100%;font:inherit;font-weight:800;font-size:17px;color:#fff;background:var(--red);border:0;border-radius:10px;padding:15px;cursor:pointer;box-shadow:0 4px 0 var(--red-d);transition:transform .08s,box-shadow .08s}
+.go:active{transform:translateY(3px);box-shadow:0 1px 0 var(--red-d)}
+.go:disabled{opacity:.7}
+.go:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
+.thanks{display:none;text-align:center;padding:26px 18px}
+.thanks.show{display:block}
+.thanks h3{font-family:'Anton',sans-serif;font-weight:400;font-size:26px;color:var(--navy);margin:0 0 8px;text-transform:uppercase}
+.thanks p{margin:0 0 6px;color:#3b4d70}
+.thanks a{color:var(--red);font-weight:800}
 
-  /* –– TICKET CARD –– */
-  .ticket-stage{ perspective:1400px; }
-  .ticket{
-    position:relative;
-    background:var(--cream);
-    color:var(--ocean-deep);
-    border-radius:18px;
-    box-shadow:0 24px 50px -16px rgba(0,0,0,0.55);
-    overflow:hidden;
-    opacity:0;
-    animation:riseIn .6s .34s ease forwards;
-  }
-  .ticket-top{
-    background:linear-gradient(135deg, var(--coral), var(--red));
-    padding:18px 22px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-  }
-  .ticket-top .label{
-    font-family:'Anton',sans-serif;
-    letter-spacing:0.05em;
-    font-size:18px;
-    color:#fff;
-    text-transform:uppercase;
-  }
-  .ticket-top .tag{
-    font-size:11px;
-    font-weight:700;
-    color:rgba(255,255,255,0.85);
-    border:1.5px solid rgba(255,255,255,0.7);
-    border-radius:6px;
-    padding:3px 8px;
-    letter-spacing:0.06em;
-  }
+/* INFO */
+.info{padding:22px 14px 8px}
+.info h2{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:22px;color:var(--navy);margin:0 0 10px}
+.acts{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0}
+.acts li{background:var(--mist);border:1.5px solid #d5dfee;border-radius:999px;padding:7px 14px;font-weight:700;font-size:14px}
+.foot{margin-top:26px;background:var(--navy);color:#fff;text-align:center;padding:22px 16px 18px}
+.foot .loc{font-weight:800;font-size:clamp(15px,4.4vw,18px);text-transform:uppercase;line-height:1.5}
+.foot a{color:#fff}
+.foot .tag{margin-top:12px;font-size:12px;opacity:.75;text-align:left}
+.admin-link{display:block;margin:12px auto 0;background:none;border:0;color:rgba(255,255,255,.55);font:inherit;font-size:12px;text-decoration:underline;cursor:pointer}
 
-  .perforation{
-    position:relative;
-    height:0;
-    border-top:2px dashed rgba(7,58,66,0.25);
-    margin:0 18px;
-  }
-  .perforation::before, .perforation::after{
-    content:"";
-    position:absolute;
-    top:-12px;
-    width:24px; height:24px;
-    background:var(--ocean-deep);
-    border-radius:50%;
-  }
-  .perforation::before{ left:-30px; }
-  .perforation::after{ right:-30px; }
-
-  .ticket-body{ padding:24px 22px 22px; }
-
-  .field{ margin-bottom:16px; }
-  .field label{
-    display:block;
-    font-size:12px;
-    font-weight:700;
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-    color:var(--ocean-mid);
-    margin-bottom:6px;
-  }
-  .field input{
-    width:100%;
-    border:2px solid rgba(14,92,104,0.18);
-    background:#fffdf6;
-    border-radius:10px;
-    padding:13px 14px;
-    font-size:15px;
-    font-family:'DM Sans',sans-serif;
-    color:var(--ocean-deep);
-    outline:none;
-    transition:border-color .15s ease, box-shadow .15s ease;
-  }
-  .field input::placeholder{ color:rgba(7,58,66,0.35); }
-  .field input:focus{
-    border-color:var(--coral);
-    box-shadow:0 0 0 4px rgba(255,90,54,0.14);
-  }
-  .field .err{
-    display:none;
-    font-size:12px;
-    color:var(--red);
-    font-weight:700;
-    margin-top:5px;
-  }
-  .field.invalid input{ border-color:var(--red); }
-  .field.invalid .err{ display:block; }
-
-  .choice-row{
-    display:flex;
-    gap:10px;
-  }
-  .choice-btn{
-    flex:1;
-    border:2px solid rgba(14,92,104,0.18);
-    background:#fffdf6;
-    border-radius:10px;
-    padding:12px 10px;
-    font-family:'DM Sans',sans-serif;
-    font-size:14px;
-    font-weight:700;
-    color:var(--ocean-mid);
-    cursor:pointer;
-    transition:border-color .15s ease, background .15s ease, color .15s ease, transform .1s ease;
-  }
-  .choice-btn:hover{ transform:translateY(-1px); }
-  .choice-btn.selected{
-    border-color:var(--coral);
-    background:linear-gradient(135deg, var(--coral), var(--red));
-    color:#fff;
-  }
-  .field.invalid .choice-btn{ border-color:var(--red); }
-
-  .payday-box{
-    display:none;
-    background:rgba(244,185,66,0.1);
-    border:1.5px dashed var(--gold);
-    border-radius:12px;
-    padding:14px 16px 16px;
-  }
-  .payday-box.show{ display:block; }
-  .payday-box label{ color:var(--ocean-deep); }
-  .payday-box input{
-    width:100%;
-    border:2px solid rgba(14,92,104,0.18);
-    background:#fffdf6;
-    border-radius:10px;
-    padding:12px 14px;
-    font-size:15px;
-    font-family:'DM Sans',sans-serif;
-    color:var(--ocean-deep);
-    outline:none;
-  }
-  .payday-box input:focus{
-    border-color:var(--coral);
-    box-shadow:0 0 0 4px rgba(255,90,54,0.14);
-  }
-  .payday-note{
-    font-size:12px;
-    color:var(--red);
-    font-weight:700;
-    margin-top:8px;
-    line-height:1.4;
-  }
-
-  .submit-btn{
-    width:100%;
-    border:none;
-    border-radius:12px;
-    background:linear-gradient(135deg, var(--coral), var(--red));
-    color:#fff;
-    font-family:'Anton',sans-serif;
-    letter-spacing:0.04em;
-    text-transform:uppercase;
-    font-size:17px;
-    padding:15px;
-    cursor:pointer;
-    margin-top:6px;
-    box-shadow:0 10px 24px -8px rgba(200,37,43,0.6);
-    transition:transform .12s ease, box-shadow .12s ease, opacity .2s ease;
-  }
-  .submit-btn:hover{ transform:translateY(-2px); box-shadow:0 14px 28px -8px rgba(200,37,43,0.7); }
-  .submit-btn:active{ transform:translateY(0); }
-  .submit-btn:disabled{ opacity:0.6; cursor:not-allowed; transform:none; }
-
-  .ticket-foot{
-    text-align:center;
-    font-size:11px;
-    color:rgba(7,58,66,0.55);
-    padding:10px 22px 18px;
-    font-weight:500;
-  }
-
-  /* footer */
-  .footer-note{
-    text-align:center;
-    font-size:12px;
-    color:rgba(255,248,233,0.55);
-    margin-top:22px;
-    line-height:1.6;
-  }
-  .admin-link{
-    background:none;
-    border:none;
-    color:rgba(255,248,233,0.35);
-    font-size:11px;
-    text-decoration:underline;
-    cursor:pointer;
-    margin-top:14px;
-    font-family:'DM Sans',sans-serif;
-    display:block;
-    margin-left:auto;
-    margin-right:auto;
-  }
-
-  /* admin */
-  .admin-panel{
-    display:none;
-    margin-top:16px;
-    background:rgba(255,248,233,0.06);
-    border:1px solid rgba(244,185,66,0.25);
-    border-radius:14px;
-    padding:16px;
-  }
-  .admin-panel.show{ display:block; }
-  .admin-panel h3{
-    font-family:'Anton',sans-serif;
-    text-transform:uppercase;
-    font-size:14px;
-    color:var(--gold);
-    margin:0 0 12px;
-    letter-spacing:0.04em;
-  }
-  .admin-login{ display:flex; gap:8px; }
-  .admin-login input{
-    flex:1;
-    border:2px solid rgba(244,185,66,0.3);
-    background:rgba(255,248,233,0.08);
-    border-radius:8px;
-    padding:10px 12px;
-    font-size:14px;
-    color:var(--cream);
-    outline:none;
-  }
-  .admin-login input::placeholder{ color:rgba(255,248,233,0.4); }
-  .admin-login button{
-    border:none;
-    border-radius:8px;
-    background:var(--gold);
-    color:var(--ocean-deep);
-    font-weight:700;
-    font-size:13px;
-    padding:0 16px;
-    cursor:pointer;
-  }
-  .admin-error{
-    font-size:12px;
-    color:var(--coral);
-    margin-top:8px;
-    display:none;
-  }
-  .admin-table-wrap{ display:none; }
-  .admin-toolbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:10px;
-  }
-  .admin-count{ font-size:12px; color:rgba(255,248,233,0.6); }
-  .admin-refresh{
-    background:none;
-    border:1px solid rgba(244,185,66,0.4);
-    color:var(--gold);
-    font-size:11px;
-    border-radius:6px;
-    padding:5px 10px;
-    cursor:pointer;
-  }
-  .admin-row{
-    border-bottom:1px solid rgba(255,248,233,0.08);
-    padding:10px 0;
-    font-size:12.5px;
-  }
-  .admin-row:last-child{ border-bottom:none; }
-  .admin-row .nm{ font-weight:700; color:var(--cream); }
-  .admin-row .meta{ color:rgba(255,248,233,0.55); margin-top:2px; }
-  .admin-row .tags{ margin-top:6px; display:flex; gap:6px; flex-wrap:wrap; }
-  .admin-tag{
-    font-size:10.5px;
-    font-weight:700;
-    padding:2px 8px;
-    border-radius:999px;
-  }
-  .admin-tag.yes{ background:rgba(46,204,113,0.18); color:#6fe39a; }
-  .admin-tag.no{ background:rgba(255,90,54,0.18); color:#ff9678; }
-  .admin-tag.date{ background:rgba(244,185,66,0.18); color:var(--gold); }
-  .admin-empty, .admin-loading{ font-size:12px; color:rgba(255,248,233,0.5); padding:6px 0; }
-  .admin-export{
-    margin-top:12px;
-    background:none;
-    border:1px solid rgba(255,248,233,0.25);
-    color:var(--cream);
-    font-size:11px;
-    border-radius:6px;
-    padding:7px 12px;
-    cursor:pointer;
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; }
-  }
+/* ADMIN */
+.admin{display:none;background:#fff;color:var(--ink);border-radius:12px;margin:14px 12px 0;padding:16px;text-align:left}
+.admin.show{display:block}
+.admin h3{margin:0 0 10px;font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:18px}
+.admin input{width:100%;margin-bottom:8px}
+.admin button{font:inherit;font-weight:700;border:0;border-radius:8px;padding:9px 14px;cursor:pointer;background:var(--red);color:#fff}
+.admin .sec{background:var(--navy)}
+.row{border-top:1px solid #e3e9f3;padding:10px 0;font-size:14px}
+.row .nm{font-weight:800}
+.row .meta{color:#4a5b7d;font-size:13px}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.tag{font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;background:#e3e9f3}
+.tag.y{background:#d9f2e1;color:#14663a}.tag.n{background:#fbe0e1;color:var(--red-d)}.tag.p{background:var(--navy);color:#fff}
+.bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-weight:800}
+#aTable{display:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="eyebrow">WILGRAY TOUR</div>
-    <div class="presents">presents a trip to</div>
-    <h1>Ocean Green<br>Beach Resort</h1>
-    <div class="meta-row">
-      <div class="meta-pill">📅 <b>3rd July, 2026</b></div>
-      <div class="meta-pill">⏰ <b>8:00 AM</b></div>
-    </div>
-    <div class="countdown" id="countdown">
-      <div class="countdown-label">Trip starts in</div>
-      <div class="countdown-units">
-        <div class="cd-unit"><span class="cd-num" id="cdDays">00</span><span class="cd-tag">days</span></div>
-        <div class="cd-unit"><span class="cd-num" id="cdHours">00</span><span class="cd-tag">hrs</span></div>
-        <div class="cd-unit"><span class="cd-num" id="cdMins">00</span><span class="cd-tag">min</span></div>
-        <div class="cd-unit"><span class="cd-num" id="cdSecs">00</span><span class="cd-tag">sec</span></div>
-      </div>
-    </div>
+<div class="page">
 
-    <div class="ticket-stage">
-      <div class="ticket" id="ticket">
-        <div class="ticket-top">
-          <span class="label">Boarding Pass</span>
-          <span class="tag">Reserve a seat</span>
-        </div>
-        <div class="perforation"></div>
-        <div class="ticket-body">
-          <form id="regForm" novalidate>
-            <div class="field" id="nameField">
-              <label for="fullName">Full name</label>
-              <input type="text" id="fullName" placeholder="e.g. Akosua Mensah" autocomplete="name">
-              <div class="err">Please enter your full name.</div>
-            </div>
-            <div class="field" id="locField">
-              <label for="location">Location</label>
-              <input type="text" id="location" placeholder="e.g. East Legon, Accra" autocomplete="address-level2">
-              <div class="err">Please enter your location.</div>
-            </div>
-            <div class="field" id="phoneField">
-              <label for="phone">Telephone number</label>
-              <input type="tel" id="phone" placeholder="e.g. 054 216 5661" autocomplete="tel">
-              <div class="err">Please enter a valid phone number.</div>
-            </div>
+<header class="hero">
+  <div class="sun"></div>
+  <div class="brand">WILGRAY TOUR<small>Presents</small></div>
+  <div class="trip-to">A trip to</div>
+  <h1>Shai Hills<br>and Sajuna</h1>
 
-            <div class="field" id="interestField">
-              <label>Are you still interested in this trip?</label>
-              <div class="choice-row">
-                <button type="button" class="choice-btn" data-group="interest" data-value="yes">Yes, I'm in</button>
-                <button type="button" class="choice-btn" data-group="interest" data-value="no">No, not anymore</button>
-              </div>
-              <div class="err">Please let us know if you're still interested.</div>
-            </div>
+  <div class="gull g1"><svg viewBox="0 0 24 12"><path class="wing" d="M0 10 Q6 0 12 8 Q18 0 24 10" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="gull g2"><svg viewBox="0 0 24 12"><path class="wing" d="M0 10 Q6 0 12 8 Q18 0 24 10" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div class="cloud c1"></div><div class="cloud c2"></div>
+  <div class="scene" aria-hidden="true">
+    <div class="layer l-far"><svg viewBox="0 0 520 150" preserveAspectRatio="none"><path d="M0 70 Q130 46 260 70 T520 70 V150 H0Z" fill="#9aa97f" opacity="0.55"/></svg><svg viewBox="0 0 520 150" preserveAspectRatio="none"><path d="M0 70 Q130 46 260 70 T520 70 V150 H0Z" fill="#9aa97f" opacity="0.55"/></svg></div>
+    <div class="layer l-mid"><svg viewBox="0 0 520 118" preserveAspectRatio="none"><path d="M0 60 Q130 40 260 60 T520 60 V118 H0Z" fill="#b3935a" opacity="1"/></svg><svg viewBox="0 0 520 118" preserveAspectRatio="none"><path d="M0 60 Q130 40 260 60 T520 60 V118 H0Z" fill="#b3935a" opacity="1"/></svg></div>
+    <div class="layer l-beach"><svg viewBox="0 0 1560 170" preserveAspectRatio="none"><defs><linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fdcf3"/><stop offset="1" stop-color="#2a9bd2"/></linearGradient></defs><path d="M820 90 Q870 66 920 90Z" fill="#86a58f" opacity=".7"/><path d="M560 170 C600 162 620 92 680 88 L900 88 C950 92 970 162 1010 170Z" fill="url(#sea)"/><path class="tw" d="M660 98 h8" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><path class="tw" d="M700 106 h6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><path class="tw" d="M740 95 h9" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><path class="tw" d="M790 104 h7" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><path class="tw" d="M830 98 h8" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><path class="tw" d="M870 108 h6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><path class="tw" d="M910 100 h8" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><path class="tw" d="M690 114 h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><path class="tw" d="M850 114 h6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><path d="M552 170 C610 150 630 126 690 122 L890 122 C950 126 972 150 1020 170Z" fill="#f0d9a0"/><path class="foam" d="M640 122 q12 -5 24 0 t24 0 q12 -5 24 0 t24 0 q12 -5 24 0 t24 0 q12 -5 24 0 t24 0 q12 -5 24 0 t24 0" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><path class="foam f2" d="M650 116 q14 -4 28 0 t28 0 q14 -4 28 0 t28 0 q14 -4 28 0 t28 0 q14 -4 28 0 t28 0" fill="none" stroke="#fff" stroke-width="1.5" opacity=".5" stroke-linecap="round"/><g class="boat"><path d="M-12 0 H12 L8 6 H-8Z" fill="#c8252b" transform="translate(800 96)"/><path d="M0 0 V-22" stroke="#444" stroke-width="1.4" transform="translate(800 94)"/><path d="M2 0 L2 -21 L16 0Z" fill="#fff" transform="translate(800 94)"/><path d="M-2 0 L-2 -17 L-10 0Z" fill="#f6e3b4" transform="translate(800 94)"/></g><g transform="translate(612 142) scale(1.1)"><path d="M0 0 Q9 -22 4 -44" stroke="#6b4b2a" stroke-width="4.5" fill="none" stroke-linecap="round"/><g class="fr " fill="none" stroke-linecap="round"><path d="M4 -44 Q22 -62 42 -40" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q22 -62 42 -40" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q-14 -62 -34 -40" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q-14 -62 -34 -40" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q26 -50 38 -26" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q26 -50 38 -26" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q-18 -50 -30 -26" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q-18 -50 -30 -26" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q10 -64 24 -66" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q10 -64 24 -66" stroke="#63bd5a" stroke-width="1.1"/><circle cx="2" cy="-41" r="2.6" fill="#5a3b1d" stroke="none"/><circle cx="7" cy="-42" r="2.4" fill="#4a2f16" stroke="none"/></g></g><g transform="translate(650 144) scale(0.8)"><path d="M0 0 Q9 -22 4 -44" stroke="#6b4b2a" stroke-width="4.5" fill="none" stroke-linecap="round"/><g class="fr b" fill="none" stroke-linecap="round"><path d="M4 -44 Q22 -62 42 -40" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q22 -62 42 -40" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q-14 -62 -34 -40" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q-14 -62 -34 -40" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q26 -50 38 -26" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q26 -50 38 -26" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q-18 -50 -30 -26" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q-18 -50 -30 -26" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q10 -64 24 -66" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q10 -64 24 -66" stroke="#63bd5a" stroke-width="1.1"/><circle cx="2" cy="-41" r="2.6" fill="#5a3b1d" stroke="none"/><circle cx="7" cy="-42" r="2.4" fill="#4a2f16" stroke="none"/></g></g><g transform="translate(740 140)"><path d="M0 0 V-26" stroke="#8a6a47" stroke-width="2"/><path d="M-18 -26 Q0 -46 18 -26Z" fill="#c8252b"/><path d="M-6 -26 Q-5 -40 0 -41 Q5 -40 6 -26Z" fill="#fff"/><rect x="-13" y="1" width="24" height="4" rx="1" fill="#f6e3b4"/></g><g transform="translate(822 142)"><path d="M0 0 V-26" stroke="#8a6a47" stroke-width="2"/><path d="M-18 -26 Q0 -46 18 -26Z" fill="#0d2a5c"/><path d="M-6 -26 Q-5 -40 0 -41 Q5 -40 6 -26Z" fill="#fff"/><rect x="-13" y="1" width="24" height="4" rx="1" fill="#f6e3b4"/></g><g transform="translate(900 142) scale(1)"><path d="M0 0 Q9 -22 4 -44" stroke="#6b4b2a" stroke-width="4.5" fill="none" stroke-linecap="round"/><g class="fr b" fill="none" stroke-linecap="round"><path d="M4 -44 Q22 -62 42 -40" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q22 -62 42 -40" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q-14 -62 -34 -40" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q-14 -62 -34 -40" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q26 -50 38 -26" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q26 -50 38 -26" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q-18 -50 -30 -26" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q-18 -50 -30 -26" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q10 -64 24 -66" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q10 -64 24 -66" stroke="#63bd5a" stroke-width="1.1"/><circle cx="2" cy="-41" r="2.6" fill="#5a3b1d" stroke="none"/><circle cx="7" cy="-42" r="2.4" fill="#4a2f16" stroke="none"/></g></g><g transform="translate(936 144) scale(0.78)"><path d="M0 0 Q9 -22 4 -44" stroke="#6b4b2a" stroke-width="4.5" fill="none" stroke-linecap="round"/><g class="fr " fill="none" stroke-linecap="round"><path d="M4 -44 Q22 -62 42 -40" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q22 -62 42 -40" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q-14 -62 -34 -40" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q-14 -62 -34 -40" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q26 -50 38 -26" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q26 -50 38 -26" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q-18 -50 -30 -26" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q-18 -50 -30 -26" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q10 -64 24 -66" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q10 -64 24 -66" stroke="#63bd5a" stroke-width="1.1"/><circle cx="2" cy="-41" r="2.6" fill="#5a3b1d" stroke="none"/><circle cx="7" cy="-42" r="2.4" fill="#4a2f16" stroke="none"/></g></g></svg><svg viewBox="0 0 1560 170" preserveAspectRatio="none"><defs><linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fdcf3"/><stop offset="1" stop-color="#2a9bd2"/></linearGradient></defs><path d="M820 90 Q870 66 920 90Z" fill="#86a58f" opacity=".7"/><path d="M560 170 C600 162 620 92 680 88 L900 88 C950 92 970 162 1010 170Z" fill="url(#sea)"/><path class="tw" d="M660 98 h8" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><path class="tw" d="M700 106 h6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><path class="tw" d="M740 95 h9" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><path class="tw" d="M790 104 h7" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><path class="tw" d="M830 98 h8" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><path class="tw" d="M870 108 h6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><path class="tw" d="M910 100 h8" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><path class="tw" d="M690 114 h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><path class="tw" d="M850 114 h6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><path d="M552 170 C610 150 630 126 690 122 L890 122 C950 126 972 150 1020 170Z" fill="#f0d9a0"/><path class="foam" d="M640 122 q12 -5 24 0 t24 0 q12 -5 24 0 t24 0 q12 -5 24 0 t24 0 q12 -5 24 0 t24 0 q12 -5 24 0 t24 0" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><path class="foam f2" d="M650 116 q14 -4 28 0 t28 0 q14 -4 28 0 t28 0 q14 -4 28 0 t28 0 q14 -4 28 0 t28 0" fill="none" stroke="#fff" stroke-width="1.5" opacity=".5" stroke-linecap="round"/><g class="boat"><path d="M-12 0 H12 L8 6 H-8Z" fill="#c8252b" transform="translate(800 96)"/><path d="M0 0 V-22" stroke="#444" stroke-width="1.4" transform="translate(800 94)"/><path d="M2 0 L2 -21 L16 0Z" fill="#fff" transform="translate(800 94)"/><path d="M-2 0 L-2 -17 L-10 0Z" fill="#f6e3b4" transform="translate(800 94)"/></g><g transform="translate(612 142) scale(1.1)"><path d="M0 0 Q9 -22 4 -44" stroke="#6b4b2a" stroke-width="4.5" fill="none" stroke-linecap="round"/><g class="fr " fill="none" stroke-linecap="round"><path d="M4 -44 Q22 -62 42 -40" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q22 -62 42 -40" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q-14 -62 -34 -40" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q-14 -62 -34 -40" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q26 -50 38 -26" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q26 -50 38 -26" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q-18 -50 -30 -26" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q-18 -50 -30 -26" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q10 -64 24 -66" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q10 -64 24 -66" stroke="#63bd5a" stroke-width="1.1"/><circle cx="2" cy="-41" r="2.6" fill="#5a3b1d" stroke="none"/><circle cx="7" cy="-42" r="2.4" fill="#4a2f16" stroke="none"/></g></g><g transform="translate(650 144) scale(0.8)"><path d="M0 0 Q9 -22 4 -44" stroke="#6b4b2a" stroke-width="4.5" fill="none" stroke-linecap="round"/><g class="fr b" fill="none" stroke-linecap="round"><path d="M4 -44 Q22 -62 42 -40" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q22 -62 42 -40" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q-14 -62 -34 -40" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q-14 -62 -34 -40" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q26 -50 38 -26" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q26 -50 38 -26" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q-18 -50 -30 -26" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q-18 -50 -30 -26" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q10 -64 24 -66" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q10 -64 24 -66" stroke="#63bd5a" stroke-width="1.1"/><circle cx="2" cy="-41" r="2.6" fill="#5a3b1d" stroke="none"/><circle cx="7" cy="-42" r="2.4" fill="#4a2f16" stroke="none"/></g></g><g transform="translate(740 140)"><path d="M0 0 V-26" stroke="#8a6a47" stroke-width="2"/><path d="M-18 -26 Q0 -46 18 -26Z" fill="#c8252b"/><path d="M-6 -26 Q-5 -40 0 -41 Q5 -40 6 -26Z" fill="#fff"/><rect x="-13" y="1" width="24" height="4" rx="1" fill="#f6e3b4"/></g><g transform="translate(822 142)"><path d="M0 0 V-26" stroke="#8a6a47" stroke-width="2"/><path d="M-18 -26 Q0 -46 18 -26Z" fill="#0d2a5c"/><path d="M-6 -26 Q-5 -40 0 -41 Q5 -40 6 -26Z" fill="#fff"/><rect x="-13" y="1" width="24" height="4" rx="1" fill="#f6e3b4"/></g><g transform="translate(900 142) scale(1)"><path d="M0 0 Q9 -22 4 -44" stroke="#6b4b2a" stroke-width="4.5" fill="none" stroke-linecap="round"/><g class="fr b" fill="none" stroke-linecap="round"><path d="M4 -44 Q22 -62 42 -40" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q22 -62 42 -40" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q-14 -62 -34 -40" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q-14 -62 -34 -40" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q26 -50 38 -26" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q26 -50 38 -26" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q-18 -50 -30 -26" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q-18 -50 -30 -26" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q10 -64 24 -66" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q10 -64 24 -66" stroke="#63bd5a" stroke-width="1.1"/><circle cx="2" cy="-41" r="2.6" fill="#5a3b1d" stroke="none"/><circle cx="7" cy="-42" r="2.4" fill="#4a2f16" stroke="none"/></g></g><g transform="translate(936 144) scale(0.78)"><path d="M0 0 Q9 -22 4 -44" stroke="#6b4b2a" stroke-width="4.5" fill="none" stroke-linecap="round"/><g class="fr " fill="none" stroke-linecap="round"><path d="M4 -44 Q22 -62 42 -40" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q22 -62 42 -40" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q-14 -62 -34 -40" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q-14 -62 -34 -40" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q26 -50 38 -26" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q26 -50 38 -26" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q-18 -50 -30 -26" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q-18 -50 -30 -26" stroke="#63bd5a" stroke-width="1.1"/><path d="M4 -44 Q10 -64 24 -66" stroke="#2f8a3b" stroke-width="3.6"/><path d="M4 -44 Q10 -64 24 -66" stroke="#63bd5a" stroke-width="1.1"/><circle cx="2" cy="-41" r="2.6" fill="#5a3b1d" stroke="none"/><circle cx="7" cy="-42" r="2.4" fill="#4a2f16" stroke="none"/></g></g></svg></div>
+    <svg class="mk" viewBox="0 0 150 150" aria-hidden="true"><g fill="none" stroke="#3f3720" stroke-linecap="round"><path d="M30 150 Q34 112 42 92 Q48 76 66 72" stroke-width="7"/><path d="M42 94 Q86 66 144 70" stroke-width="5"/><path d="M60 76 L52 62" stroke-width="3"/></g><ellipse cx="44" cy="70" rx="32" ry="9" fill="#4a4a28"/><ellipse cx="62" cy="62" rx="20" ry="6" fill="#55552f"/><g class="m1" transform="translate(76 72) scale(1)"><path class="tail" d="M-5 4 Q-15 3 -13 -9" fill="none" stroke="#6e5238" stroke-width="2.2" stroke-linecap="round"/><ellipse cx="0" cy="-2" rx="6" ry="8" fill="#8a6a47"/><rect x="-1" y="3" width="2.4" height="6" fill="#6e5238"/><g class="head"><circle cx="4" cy="-13" r="4.6" fill="#9b7a55"/><circle cx="5.8" cy="-12.4" r="2.7" fill="#dcb88f"/><circle cx="2" cy="-15.4" r="1.8" fill="#8a6a47"/><circle cx="6.4" cy="-14.2" r=".7" fill="#2a1c10"/></g></g><g class="m2" transform="translate(100 70) scale(0.9)"><path class="tail" d="M-5 4 Q-15 3 -13 -9" fill="none" stroke="#6e5238" stroke-width="2.2" stroke-linecap="round"/><ellipse cx="0" cy="-2" rx="6" ry="8" fill="#8a6a47"/><rect x="-1" y="3" width="2.4" height="6" fill="#6e5238"/><g class="head"><circle cx="4" cy="-13" r="4.6" fill="#9b7a55"/><circle cx="5.8" cy="-12.4" r="2.7" fill="#dcb88f"/><circle cx="2" cy="-15.4" r="1.8" fill="#8a6a47"/><circle cx="6.4" cy="-14.2" r=".7" fill="#2a1c10"/></g></g><g class="m3" transform="translate(122 70) scale(0.95)"><path class="tail" d="M-5 4 Q-15 3 -13 -9" fill="none" stroke="#6e5238" stroke-width="2.2" stroke-linecap="round"/><ellipse cx="0" cy="-2" rx="6" ry="8" fill="#8a6a47"/><rect x="-1" y="3" width="2.4" height="6" fill="#6e5238"/><g class="head"><circle cx="4" cy="-13" r="4.6" fill="#9b7a55"/><circle cx="5.8" cy="-12.4" r="2.7" fill="#dcb88f"/><circle cx="2" cy="-15.4" r="1.8" fill="#8a6a47"/><circle cx="6.4" cy="-14.2" r=".7" fill="#2a1c10"/></g></g></svg>
+    <div class="layer l-tree"><svg viewBox="0 0 520 132" preserveAspectRatio="none"><g fill="#4b4326" transform="translate(110 126) scale(1.15)"><rect x="-3" y="-44" width="6" height="46"/><path d="M-3 -34 L-30 -52 L-27 -55 L-2 -42Z M3 -38 L28 -56 L31 -53 L4 -33Z"/><ellipse cx="0" cy="-58" rx="44" ry="9"/><ellipse cx="-24" cy="-52" rx="22" ry="6"/><ellipse cx="26" cy="-54" rx="20" ry="6"/></g><g fill="#5a4f2c" transform="translate(390 126) scale(0.8)"><rect x="-3" y="-44" width="6" height="46"/><path d="M-3 -34 L-30 -52 L-27 -55 L-2 -42Z M3 -38 L28 -56 L31 -53 L4 -33Z"/><ellipse cx="0" cy="-58" rx="44" ry="9"/><ellipse cx="-24" cy="-52" rx="22" ry="6"/><ellipse cx="26" cy="-54" rx="20" ry="6"/></g><ellipse cx="250" cy="124" rx="16" ry="7" fill="#7a7a42"/><ellipse cx="260" cy="121" rx="10" ry="6" fill="#6c6c38"/><ellipse cx="500" cy="124" rx="16" ry="7" fill="#7a7a42"/><ellipse cx="510" cy="121" rx="10" ry="6" fill="#6c6c38"/></svg><svg viewBox="0 0 520 132" preserveAspectRatio="none"><g fill="#4b4326" transform="translate(110 126) scale(1.15)"><rect x="-3" y="-44" width="6" height="46"/><path d="M-3 -34 L-30 -52 L-27 -55 L-2 -42Z M3 -38 L28 -56 L31 -53 L4 -33Z"/><ellipse cx="0" cy="-58" rx="44" ry="9"/><ellipse cx="-24" cy="-52" rx="22" ry="6"/><ellipse cx="26" cy="-54" rx="20" ry="6"/></g><g fill="#5a4f2c" transform="translate(390 126) scale(0.8)"><rect x="-3" y="-44" width="6" height="46"/><path d="M-3 -34 L-30 -52 L-27 -55 L-2 -42Z M3 -38 L28 -56 L31 -53 L4 -33Z"/><ellipse cx="0" cy="-58" rx="44" ry="9"/><ellipse cx="-24" cy="-52" rx="22" ry="6"/><ellipse cx="26" cy="-54" rx="20" ry="6"/></g><ellipse cx="250" cy="124" rx="16" ry="7" fill="#7a7a42"/><ellipse cx="260" cy="121" rx="10" ry="6" fill="#6c6c38"/><ellipse cx="500" cy="124" rx="16" ry="7" fill="#7a7a42"/><ellipse cx="510" cy="121" rx="10" ry="6" fill="#6c6c38"/></svg></div>
+    <div class="layer l-ground"><svg viewBox="0 0 520 54" preserveAspectRatio="none"><rect y="12" width="520" height="42" fill="#a77a3d"/><rect y="12" width="520" height="5" fill="#8c6528"/><rect y="0" width="520" height="14" fill="#c99a4a"/><path d="M20 14 l3 -9 l2 9 l3 -10 l2 10 l3 -8 l1 8Z" fill="#8c6b2c"/><path d="M95 14 l3 -9 l2 9 l3 -10 l2 10 l3 -8 l1 8Z" fill="#8c6b2c"/><path d="M170 14 l3 -9 l2 9 l3 -10 l2 10 l3 -8 l1 8Z" fill="#8c6b2c"/><path d="M250 14 l3 -9 l2 9 l3 -10 l2 10 l3 -8 l1 8Z" fill="#8c6b2c"/><path d="M330 14 l3 -9 l2 9 l3 -10 l2 10 l3 -8 l1 8Z" fill="#8c6b2c"/><path d="M415 14 l3 -9 l2 9 l3 -10 l2 10 l3 -8 l1 8Z" fill="#8c6b2c"/><path d="M480 14 l3 -9 l2 9 l3 -10 l2 10 l3 -8 l1 8Z" fill="#8c6b2c"/><rect x="10" y="38" width="46" height="4" rx="2" fill="#f1dcae" opacity=".85"/><rect x="140" y="38" width="46" height="4" rx="2" fill="#f1dcae" opacity=".85"/><rect x="270" y="38" width="46" height="4" rx="2" fill="#f1dcae" opacity=".85"/><rect x="400" y="38" width="46" height="4" rx="2" fill="#f1dcae" opacity=".85"/></svg><svg viewBox="0 0 520 54" preserveAspectRatio="none"><rect y="12" width="520" height="42" fill="#a77a3d"/><rect y="12" width="520" height="5" fill="#8c6528"/><rect y="0" width="520" height="14" fill="#c99a4a"/><path d="M20 14 l3 -9 l2 9 l3 -10 l2 10 l3 -8 l1 8Z" fill="#8c6b2c"/><path d="M95 14 l3 -9 l2 9 l3 -10 l2 10 l3 -8 l1 8Z" fill="#8c6b2c"/><path d="M170 14 l3 -9 l2 9 l3 -10 l2 10 l3 -8 l1 8Z" fill="#8c6b2c"/><path d="M250 14 l3 -9 l2 9 l3 -10 l2 10 l3 -8 l1 8Z" fill="#8c6b2c"/><path d="M330 14 l3 -9 l2 9 l3 -10 l2 10 l3 -8 l1 8Z" fill="#8c6b2c"/><path d="M415 14 l3 -9 l2 9 l3 -10 l2 10 l3 -8 l1 8Z" fill="#8c6b2c"/><path d="M480 14 l3 -9 l2 9 l3 -10 l2 10 l3 -8 l1 8Z" fill="#8c6b2c"/><rect x="10" y="38" width="46" height="4" rx="2" fill="#f1dcae" opacity=".85"/><rect x="140" y="38" width="46" height="4" rx="2" fill="#f1dcae" opacity=".85"/><rect x="270" y="38" width="46" height="4" rx="2" fill="#f1dcae" opacity=".85"/><rect x="400" y="38" width="46" height="4" rx="2" fill="#f1dcae" opacity=".85"/></svg></div>
+    <div class="jeep" aria-label="Red safari jeep"><svg viewBox="-16 0 190 84">
+    <ellipse cx="78" cy="79" rx="72" ry="4" fill="rgba(60,35,10,.35)"/>
+    <g class="dust"><circle cx="-6" cy="72" r="9"/><circle cx="-2" cy="74" r="7"/><circle cx="-8" cy="70" r="10"/><circle cx="0" cy="73" r="8"/></g>
+    <g class="rig">
+      <defs><linearGradient id="rb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e5393d"/><stop offset="1" stop-color="#a81d23"/></linearGradient>
+      <linearGradient id="gl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d9efff"/><stop offset="1" stop-color="#7fb1d8"/></linearGradient></defs>
+      <circle cx="-4" cy="48" r="11" fill="#1a1b1e"/><circle cx="-4" cy="48" r="5" fill="#c8252b"/>
+      <path d="M2 36 L8 14 H96 L110 38Z" fill="#1d1f24"/>
+      <path d="M12 36 L16 19 H44 V36Z M49 36 V19 H92 L104 36Z" fill="url(#gl)"/>
+      <rect x="46" y="17" width="2.5" height="20" fill="#1d1f24"/>
+      <path d="M2 64 V42 Q2 36 9 36 H112 L134 38 Q154 40 156 50 V64Z" fill="url(#rb)"/>
+      <path d="M112 36 L134 38 Q150 40 154 48 H114Z" fill="#f05256" opacity=".55"/>
+      <rect x="48" y="38" width="1.6" height="24" fill="#8e171c"/><rect x="40" y="46" width="6" height="2.4" rx="1.2" fill="#8e171c"/><rect x="86" y="46" width="6" height="2.4" rx="1.2" fill="#8e171c"/>
+      <rect x="0" y="58" width="22" height="7" rx="2" fill="#26272b"/><rect x="138" y="56" width="20" height="8" rx="2" fill="#26272b"/>
+      <circle cx="148" cy="46" r="5" fill="#fff4c4" stroke="#26272b" stroke-width="1.6"/>
+      <g fill="#26272b"><rect x="152" y="49" width="3" height="3"/><rect x="152" y="53" width="3" height="3"/></g>
+      <circle cx="30" cy="62" r="16" fill="#101114"/><circle cx="122" cy="62" r="16" fill="#101114"/>
+      <g class="wheel"><circle cx="30" cy="64" r="13" fill="#1a1b1e"/><circle cx="30" cy="64" r="7" fill="#9aa0a8"/><path d="M30 57V71M23 64H37M25 59L35 69M35 59L25 69" stroke="#52565c" stroke-width="1.6"/></g>
+      <g class="wheel"><circle cx="122" cy="64" r="13" fill="#1a1b1e"/><circle cx="122" cy="64" r="7" fill="#9aa0a8"/><path d="M122 57V71M115 64H129M117 59L127 69M127 59L117 69" stroke="#52565c" stroke-width="1.6"/></g>
+    </g></svg></div>
+  </div>
+</header>
 
-            <div class="field" id="paidField">
-              <label>Have you made payment?</label>
-              <div class="choice-row">
-                <button type="button" class="choice-btn" data-group="paid" data-value="yes">Yes, paid</button>
-                <button type="button" class="choice-btn" data-group="paid" data-value="no">Not yet</button>
-              </div>
-              <div class="err">Please let us know your payment status.</div>
-            </div>
+<section class="when">
+  <div class="date">Friday 4th December, 2026 – 6:30am</div>
+  <div class="cd" id="cd" aria-live="off">
+    <div><b id="d">00</b><span>days</span></div>
+    <div><b id="h">00</b><span>hrs</span></div>
+    <div><b id="m">00</b><span>min</span></div>
+    <div><b id="s">00</b><span>sec</span></div>
+  </div>
+  <div class="cd-label" id="cdLabel">until we set off</div>
+</section>
 
-            <div class="field payday-box" id="paydayField">
-              <label for="payDate">When will you make payment?</label>
-              <input type="date" id="payDate" max="2026-06-25">
-              <div class="payday-note">⚠️ Deadline for payment is <b>25th June, 2026</b>.</div>
-              <div class="err">Please select a payment date.</div>
-            </div>
+<section class="prices" aria-label="Packages">
+  <div class="price"><div class="amt">GHC 250</div><div class="what">Food only</div></div>
+  <div class="price"><div class="amt">GHC 300</div><div class="what">Food and snacks</div></div>
+  <div class="price"><div class="amt">GHC 350</div><div class="what">Breakfast, lunch &amp; snacks</div></div>
+</section>
+<div class="nb">NB: All packages include transportation (complimentary), activities and access to Shai Hills &amp; Sajuna</div>
 
-            <button type="submit" class="submit-btn" id="submitBtn">Reserve My Spot →</button>
-          </form>
-        </div>
-        <div class="ticket-foot">All packages include transportation, activities &amp; beach entrance</div>
-      </div>
-    </div>
-
-    <div class="footer-note">
-      Call / WhatsApp: 054 216 5661<br>
-      GHC 220 food only · GHC 250 food &amp; snacks · GHC 300 breakfast, lunch &amp; snacks
-    </div>
-
-    <button type="button" class="admin-link" id="adminToggle">Organizer login</button>
-    <div class="admin-panel" id="adminPanel">
-      <h3>Registered Travelers</h3>
-      <div class="admin-login" id="adminLoginBox">
-        <input type="password" id="adminPassword" placeholder="Enter organizer password">
-        <button type="button" id="adminLoginBtn">Enter</button>
-      </div>
-      <div class="admin-error" id="adminError">Incorrect password.</div>
-      <div class="admin-table-wrap" id="adminTableWrap">
-        <div class="admin-toolbar">
-          <span class="admin-count" id="adminCount">0 registrations</span>
-          <button type="button" class="admin-refresh" id="adminRefresh">Refresh</button>
-        </div>
-        <div id="adminList" class="admin-loading">Loading…</div>
-        <button type="button" class="admin-export" id="adminExport">Export CSV</button>
-      </div>
+<section class="reserve" id="reserve">
+  <h2>Reserve your seat</h2>
+  <p class="lead">Fill this in and we'll confirm with you on WhatsApp.</p>
+  <div class="card">
+    <div class="card-top"><span>Boarding pass</span><span>Shai Hills</span></div>
+    <form id="form" novalidate>
+      <div class="field" id="fName"><label for="name">Full name</label><input type="text" id="name" placeholder="e.g. Akosua Mensah" autocomplete="name"><div class="err">Enter your full name.</div></div>
+      <div class="field" id="fLoc"><label for="loc">Where will we pick you up?</label><input type="text" id="loc" placeholder="e.g. East Legon, Accra" autocomplete="address-level2"><div class="err">Enter your location.</div></div>
+      <div class="field" id="fPhone"><label for="phone">Phone number</label><input type="tel" id="phone" placeholder="e.g. 054 216 5661" autocomplete="tel"><div class="err">Enter a valid phone number.</div></div>
+      <div class="field" id="fPkg"><span class="lbl">Choose a package</span>
+        <div class="choices">
+          <button type="button" class="choice" data-g="pkg" data-v="250"><span class="p">GHC 250</span>Food only</button>
+          <button type="button" class="choice" data-g="pkg" data-v="300"><span class="p">GHC 300</span>Food and snacks</button>
+          <button type="button" class="choice" data-g="pkg" data-v="350"><span class="p">GHC 350</span>Breakfast, lunch &amp; snacks</button>
+        </div><div class="err">Pick a package.</div></div>
+      <div class="field" id="fInt"><span class="lbl">Are you still interested in this trip?</span>
+        <div class="choices two"><button type="button" class="choice" data-g="int" data-v="yes">Yes, I'm in</button><button type="button" class="choice" data-g="int" data-v="no">No, not anymore</button></div>
+        <div class="err">Let us know if you're still interested.</div></div>
+      <div class="field" id="fPaid"><span class="lbl">Have you made payment?</span>
+        <div class="choices two"><button type="button" class="choice" data-g="paid" data-v="yes">Yes, paid</button><button type="button" class="choice" data-g="paid" data-v="no">Not yet</button></div>
+        <div class="err">Let us know your payment status.</div></div>
+      <div class="field pay-box" id="fDate"><label for="payDate">When will you pay?</label><input type="date" id="payDate"><div class="note">Payment deadline: <b id="dlText"></b></div><div class="err">Pick a payment date on or before the deadline.</div></div>
+      <button class="go" id="go" type="submit">Reserve my seat</button>
+    </form>
+    <div class="thanks" id="thanks">
+      <h3>You're on the list</h3>
+      <p>WhatsApp should open with your details. If it didn't, <a id="waRetry" href="#" target="_blank" rel="noopener">tap here to send them</a>.</p>
     </div>
   </div>
+</section>
+
+<section class="info">
+  <h2>What's on the day</h2>
+  <ul class="acts"><li>Ludu</li><li>Oware</li><li>Scrabble</li><li>Swimming</li><li>Photoshoot</li></ul>
+</section>
+
+<footer class="foot">
+  <div class="loc">Location: Shai Hills<br>Call / WhatsApp <a href="tel:0542165661">054 216 5661</a></div>
+  <div class="tag">WILGRAY TOUR • Safe • Fun • Memorable</div>
+  <button type="button" class="admin-link" id="aToggle">Organizer login</button>
+  <div class="admin" id="admin">
+    <h3>Registered travelers</h3>
+    <div id="aLogin"><input type="email" id="aEmail" placeholder="Organizer email" autocomplete="username"><input type="password" id="aPass" placeholder="Password" autocomplete="current-password"><button type="button" id="aEnter">Sign in</button><div class="err" id="aErr" style="display:none"></div></div>
+    <div id="aTable">
+      <div class="bar"><span id="aCount">0 registrations</span><span><button type="button" class="sec" id="aRefresh">Refresh</button> <button type="button" class="sec" id="aOut">Sign out</button></span></div>
+      <div id="aList"></div>
+      <button type="button" id="aCsv" style="margin-top:10px">Export CSV</button>
+    </div>
+  </div>
+</footer>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-  // ===== Supabase config — replace with your project's values =====
-  const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-  const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
-  const ADMIN_PASSWORD = 'wilgray2026'; // change this to whatever you want
+/* ===== CONFIG – edit these ===== */
+const SUPABASE_URL = 'https://ktxbwpfojhcgaxaejgqx.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_GOjdzsy_qtnozw8JHrAcCA_QqhGSfIx';
+const TRIP_START = '2026-12-04T06:30:00';
+const PAY_DEADLINE = '2026-12-01';           // last day to pay (YYYY-MM-DD)
+const WHATSAPP = '233542165661';
+const TRIP_NAME = 'Shai Hills and Sajuna trip (Fri 4th December)';
+const PKG = {250:'GHC 250 – Food only',300:'GHC 300 – Food and snacks',350:'GHC 350 – Breakfast, lunch & snacks'};
+/* =============================== */
 
-  const supabaseClient = (SUPABASE_URL.startsWith('http'))
-    ? supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-    : null;
-</script>
-<script>
-  // ---- Countdown ----
-  const tripDate = new Date('2026-07-03T08:00:00');
-  const cdEl = document.getElementById('countdown');
-  const cdDays = document.getElementById('cdDays');
-  const cdHours = document.getElementById('cdHours');
-  const cdMins = document.getElementById('cdMins');
-  const cdSecs = document.getElementById('cdSecs');
+const db = (typeof supabase!=='undefined' && SUPABASE_URL.startsWith('http')) ? supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY) : null;
+const $ = id => document.getElementById(id);
+const esc = s => { const d=document.createElement('div'); d.textContent=s==null?'':String(s); return d.innerHTML; };
 
-  function pad(n){ return String(n).padStart(2,'0'); }
+/* Countdown */
+const start = new Date(TRIP_START);
+const pad = n => String(n).padStart(2,'0');
+function tick(){
+  const t = start - new Date();
+  if(t<=0){ $('cdLabel').textContent = "It's trip day!"; ['d','h','m','s'].forEach(k=>$(k).textContent='00'); return; }
+  $('d').textContent = pad(Math.floor(t/864e5));
+  $('h').textContent = pad(Math.floor(t/36e5)%24);
+  $('m').textContent = pad(Math.floor(t/6e4)%60);
+  $('s').textContent = pad(Math.floor(t/1e3)%60);
+}
+tick(); setInterval(tick,1000);
 
-  function updateCountdown(){
-    const now = new Date();
-    const diff = tripDate - now;
-    if(diff <= 0){
-      cdEl.classList.add('expired');
-      document.querySelector('.countdown-label').textContent = "It's trip day!";
-      cdDays.textContent = '00';
-      cdHours.textContent = '00';
-      cdMins.textContent = '00';
-      cdSecs.textContent = '00';
-      return;
-    }
-    const days = Math.floor(diff / (1000*60*60*24));
-    const hours = Math.floor((diff / (1000*60*60)) % 24);
-    const mins = Math.floor((diff / (1000*60)) % 60);
-    const secs = Math.floor((diff / 1000) % 60);
-    cdDays.textContent = pad(days);
-    cdHours.textContent = pad(hours);
-    cdMins.textContent = pad(mins);
-    cdSecs.textContent = pad(secs);
+/* Deadline */
+const dl = new Date(PAY_DEADLINE+'T00:00:00');
+$('dlText').textContent = dl.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+const payDate = $('payDate');
+payDate.max = PAY_DEADLINE;
+payDate.min = new Date().toISOString().slice(0,10);
+const deadlinePassed = new Date() > new Date(PAY_DEADLINE+'T23:59:59');
+
+/* Form */
+const sel = {pkg:null,int:null,paid:null};
+const text = {
+  name:{el:$('name'),w:$('fName'),ok:v=>v.trim().length>=2},
+  loc:{el:$('loc'),w:$('fLoc'),ok:v=>v.trim().length>=2},
+  phone:{el:$('phone'),w:$('fPhone'),ok:v=>v.replace(/\D/g,'').length>=9}
+};
+Object.values(text).forEach(f=>f.el.addEventListener('input',()=>f.w.classList.remove('invalid')));
+const groupWrap = {pkg:$('fPkg'),int:$('fInt'),paid:$('fPaid')};
+document.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>{
+  const g=b.dataset.g; sel[g]=b.dataset.v;
+  document.querySelectorAll(`.choice[data-g="${g}"]`).forEach(x=>x.classList.toggle('on',x===b));
+  groupWrap[g].classList.remove('invalid');
+  if(g==='paid'){
+    const show = b.dataset.v==='no';
+    $('fDate').classList.toggle('show',show);
+    if(!show){ payDate.value=''; $('fDate').classList.remove('invalid'); }
   }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+}));
+payDate.addEventListener('input',()=>$('fDate').classList.remove('invalid'));
 
-  // ---- Form ----
-  const form = document.getElementById('regForm');
-  const submitBtn = document.getElementById('submitBtn');
-  const interestField = document.getElementById('interestField');
-  const paidField = document.getElementById('paidField');
-  const paydayField = document.getElementById('paydayField');
-  const payDateInput = document.getElementById('payDate');
+$('form').addEventListener('submit', async e=>{
+  e.preventDefault();
+  let ok = true;
+  Object.values(text).forEach(f=>{ const v=f.ok(f.el.value); f.w.classList.toggle('invalid',!v); ok = ok&&v; });
+  ['pkg','int','paid'].forEach(g=>{ const v=!!sel[g]; groupWrap[g].classList.toggle('invalid',!v); ok=ok&&v; });
+  if(sel.paid==='no'){
+    const v = payDate.value && payDate.value<=PAY_DEADLINE;
+    $('fDate').classList.toggle('invalid',!v); ok=ok&&v;
+  }
+  if(!ok){ document.querySelector('.invalid')?.scrollIntoView({block:'center',behavior:'smooth'}); return; }
 
-  const fields = {
-    fullName: { el: document.getElementById('fullName'), wrap: document.getElementById('nameField'), validate: v => v.trim().length >= 2 },
-    location: { el: document.getElementById('location'), wrap: document.getElementById('locField'), validate: v => v.trim().length >= 2 },
-    phone: { el: document.getElementById('phone'), wrap: document.getElementById('phoneField'), validate: v => v.replace(/[^0-9]/g,'').length >= 9 }
+  const entry = {
+    name:text.name.el.value.trim(), location:text.loc.el.value.trim(), phone:text.phone.el.value.trim(),
+    package:PKG[sel.pkg], interested:sel.int==='yes'?'Yes':'No', paid:sel.paid==='yes'?'Yes':'No',
+    pay_date: sel.paid==='no' ? payDate.value : null
   };
-
-  function clearError(key){
-    fields[key].wrap.classList.remove('invalid');
-  }
-  Object.keys(fields).forEach(k => {
-    fields[k].el.addEventListener('input', () => clearError(k));
-  });
-
-  // Choice buttons (interest / paid)
-  let selections = { interest: null, paid: null };
-
-  document.querySelectorAll('.choice-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const group = btn.dataset.group;
-      const value = btn.dataset.value;
-      selections[group] = value;
-
-      document.querySelectorAll(`.choice-btn[data-group="${group}"]`).forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
-
-      if(group === 'interest'){
-        interestField.classList.remove('invalid');
-      }
-      if(group === 'paid'){
-        paidField.classList.remove('invalid');
-        if(value === 'no'){
-          paydayField.classList.add('show');
-        } else {
-          paydayField.classList.remove('show');
-          paydayField.classList.remove('invalid');
-          payDateInput.value = '';
-        }
-      }
-    });
-  });
-
-  payDateInput.addEventListener('input', () => paydayField.classList.remove('invalid'));
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    let valid = true;
-
-    Object.keys(fields).forEach(k => {
-      const f = fields[k];
-      if(!f.validate(f.el.value)){
-        f.wrap.classList.add('invalid');
-        valid = false;
-      } else {
-        f.wrap.classList.remove('invalid');
-      }
-    });
-
-    if(!selections.interest){
-      interestField.classList.add('invalid');
-      valid = false;
-    }
-    if(!selections.paid){
-      paidField.classList.add('invalid');
-      valid = false;
-    }
-    if(selections.paid === 'no' && !payDateInput.value){
-      paydayField.classList.add('invalid');
-      valid = false;
-    }
-
-    if(!valid) return;
-
-    const entry = {
-      name: fields.fullName.el.value.trim(),
-      location: fields.location.el.value.trim(),
-      phone: fields.phone.el.value.trim(),
-      interested: selections.interest === 'yes' ? 'Yes' : 'No',
-      paid: selections.paid === 'yes' ? 'Yes' : 'No',
-      payDate: selections.paid === 'no' ? payDateInput.value : null
-    };
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Saving…';
-
-    if(supabaseClient){
-      try {
-        const { error } = await supabaseClient.from('registrations').insert({
-          name: entry.name,
-          location: entry.location,
-          phone: entry.phone,
-          interested: entry.interested,
-          paid: entry.paid,
-          pay_date: entry.payDate
-        });
-        if(error) console.error('Supabase insert error:', error);
-      } catch(err){
-        console.error('Could not save to Supabase:', err);
-      }
-    }
-
-    submitBtn.textContent = 'Opening WhatsApp…';
-
-    let msg = `Hi! Here's my response for the Ocean Green Beach Resort trip (3rd July).\n`;
-    msg += `Name: ${entry.name}\n`;
-    msg += `Location: ${entry.location}\n`;
-    msg += `Phone: ${entry.phone}\n`;
-    msg += `Still interested: ${entry.interested}\n`;
-    msg += `Paid: ${entry.paid}\n`;
-    if(entry.payDate){
-      msg += `Will pay on: ${entry.payDate} (deadline 25th June, 2026)\n`;
-    }
-
-    const waText = encodeURIComponent(msg);
-    window.open(`https://wa.me/233542165661?text=${waText}`, '_blank', 'noopener');
-
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Reserve My Spot →';
-    form.reset();
-    selections = { interest: null, paid: null };
-    document.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
-    paydayField.classList.remove('show');
-  });
-
-  // ---- Admin panel ----
-  const adminToggle = document.getElementById('adminToggle');
-  const adminPanel = document.getElementById('adminPanel');
-  const adminLoginBox = document.getElementById('adminLoginBox');
-  const adminPassword = document.getElementById('adminPassword');
-  const adminLoginBtn = document.getElementById('adminLoginBtn');
-  const adminError = document.getElementById('adminError');
-  const adminTableWrap = document.getElementById('adminTableWrap');
-  const adminList = document.getElementById('adminList');
-  const adminCount = document.getElementById('adminCount');
-  const adminRefresh = document.getElementById('adminRefresh');
-  const adminExport = document.getElementById('adminExport');
-  let lastEntries = [];
-
-  adminToggle.addEventListener('click', () => {
-    adminPanel.classList.toggle('show');
-  });
-
-  adminLoginBtn.addEventListener('click', () => {
-    if(adminPassword.value === ADMIN_PASSWORD){
-      adminError.style.display = 'none';
-      adminLoginBox.style.display = 'none';
-      adminTableWrap.style.display = 'block';
-      loadRegistrations();
-    } else {
-      adminError.style.display = 'block';
-    }
-  });
-  adminPassword.addEventListener('keydown', (e) => {
-    if(e.key === 'Enter') adminLoginBtn.click();
-  });
-
-  adminRefresh.addEventListener('click', loadRegistrations);
-
-  async function loadRegistrations(){
-    if(!supabaseClient){
-      adminList.className = 'admin-empty';
-      adminList.textContent = 'Supabase is not configured yet. Add your project URL and anon key in the code.';
+  const btn=$('go'); btn.disabled=true; btn.textContent='Saving…';
+  if(db){
+    try{
+      const {error} = await db.from('registrations').insert(entry);
+      if(error) throw error;
+    }catch(err){
+      console.error(err);
+      btn.disabled=false; btn.textContent='Reserve my seat';
+      alert("We couldn't save your registration. Check your connection and try again, or WhatsApp us on 054 216 5661.");
       return;
     }
-    adminList.className = 'admin-loading';
-    adminList.textContent = 'Loading…';
-    try {
-      const { data, error } = await supabaseClient
-        .from('registrations')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-      if(error) throw error;
-
-      lastEntries = data || [];
-      adminCount.textContent = `${lastEntries.length} registration${lastEntries.length === 1 ? '' : 's'}`;
-
-      if(lastEntries.length === 0){
-        adminList.className = 'admin-empty';
-        adminList.textContent = 'No registrations yet.';
-        return;
-      }
-
-      adminList.className = '';
-      adminList.innerHTML = lastEntries.map(e => `
-        <div class="admin-row">
-          <div class="nm">${escapeHtml(e.name)}</div>
-          <div class="meta">${escapeHtml(e.location)} · ${escapeHtml(e.phone)}</div>
-          <div class="tags">
-            <span class="admin-tag ${e.interested === 'Yes' ? 'yes' : 'no'}">Interested: ${escapeHtml(e.interested)}</span>
-            <span class="admin-tag ${e.paid === 'Yes' ? 'yes' : 'no'}">Paid: ${escapeHtml(e.paid)}</span>
-            ${e.pay_date ? `<span class="admin-tag date">Pays: ${escapeHtml(e.pay_date)}</span>` : ''}
-          </div>
-        </div>
-      `).join('');
-    } catch(err){
-      console.error('Could not load registrations:', err);
-      adminList.className = 'admin-empty';
-      adminList.textContent = 'Could not load registrations right now.';
-    }
   }
+  let msg = `Hi! Here's my response for the ${TRIP_NAME}.\nName: ${entry.name}\nLocation: ${entry.location}\nPhone: ${entry.phone}\nPackage: ${entry.package}\nStill interested: ${entry.interested}\nPaid: ${entry.paid}`;
+  if(entry.pay_date) msg += `\nWill pay on: ${entry.pay_date} (deadline ${$('dlText').textContent})`;
+  const url = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+  $('waRetry').href = url;
+  window.open(url,'_blank','noopener');
+  $('form').style.display='none';
+  $('thanks').classList.add('show');
+});
 
-  adminExport.addEventListener('click', () => {
-    if(!lastEntries.length) return;
-    const headers = ['Name','Location','Phone','Interested','Paid','Pay Date','Submitted At'];
-    const rows = lastEntries.map(e => [
-      e.name, e.location, e.phone, e.interested, e.paid, e.pay_date || '', e.created_at || ''
-    ]);
-    const csv = [headers, ...rows]
-      .map(r => r.map(v => `"${String(v).replace(/"/g,'""')}"`).join(','))
-      .join('\n');
-    const blob = new Blob([csv], { type: 'text/csv' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'oceangreen-registrations.csv';
-    a.click();
-    URL.revokeObjectURL(url);
-  });
-
-  function escapeHtml(str){
-    const d = document.createElement('div');
-    d.textContent = str == null ? '' : String(str);
-    return d.innerHTML;
-  }
+/* Admin */
+let rows=[];
+const showPanel = on => { $('aLogin').style.display = on?'none':'block'; $('aTable').style.display = on?'block':'none'; };
+$('aToggle').onclick=async()=>{
+  $('admin').classList.toggle('show');
+  if(db){ const {data}=await db.auth.getSession(); if(data.session){ showPanel(true); load(); } }
+};
+$('aEnter').onclick=async()=>{
+  const err=$('aErr');
+  if(!db){ err.textContent='Supabase is not configured yet.'; err.style.display='block'; return; }
+  err.style.display='none';
+  const {error}=await db.auth.signInWithPassword({email:$('aEmail').value.trim(),password:$('aPass').value});
+  if(error){ err.textContent='Wrong email or password.'; err.style.display='block'; return; }
+  $('aPass').value=''; showPanel(true); load();
+};
+$('aPass').addEventListener('keydown',e=>{ if(e.key==='Enter') $('aEnter').click(); });
+$('aOut').onclick=async()=>{ await db.auth.signOut(); rows=[]; $('aList').innerHTML=''; showPanel(false); };
+$('aRefresh').onclick=load;
+async function load(){
+  const L=$('aList');
+  if(!db){ L.textContent='Supabase is not configured yet. Add your project URL and anon key in the code.'; return; }
+  L.textContent='Loading…';
+  try{
+    const {data,error}=await db.from('registrations').select('*').order('created_at',{ascending:false});
+    if(error) throw error;
+    rows=data||[];
+    $('aCount').textContent=`${rows.length} registration${rows.length===1?'':'s'}`;
+    L.innerHTML = rows.length ? rows.map(r=>`<div class="row"><div class="nm">${esc(r.name)}</div><div class="meta">${esc(r.location)} · ${esc(r.phone)}</div><div class="tags"><span class="tag">${esc(r.package||'No package')}</span><span class="tag ${r.interested==='Yes'?'y':'n'}">Interested: ${esc(r.interested)}</span><span class="tag ${r.paid==='Yes'?'y':'n'}">Paid: ${esc(r.paid)}</span>${r.pay_date?`<span class="tag p">Pays: ${esc(r.pay_date)}</span>`:''}</div></div>`).join('') : 'No registrations yet.';
+  }catch(err){ console.error(err); L.textContent='Could not load registrations right now.'; }
+}
+$('aCsv').onclick=()=>{
+  if(!rows.length) return;
+  const head=['Name','Location','Phone','Package','Interested','Paid','Pay Date','Submitted At'];
+  const body=rows.map(r=>[r.name,r.location,r.phone,r.package||'',r.interested,r.paid,r.pay_date||'',r.created_at||'']);
+  const csv=[head,...body].map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download='shai-hills-registrations.csv'; a.click(); URL.revokeObjectURL(a.href);
+};
 </script>
-
 </body>
 </html>
