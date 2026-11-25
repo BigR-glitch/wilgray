@@ -138,6 +138,10 @@ input:focus{border-color:var(--red);box-shadow:0 0 0 4px rgba(200,37,43,.14)}
 .foot .loc{font-weight:800;font-size:clamp(15px,4.4vw,18px);text-transform:uppercase;line-height:1.5}
 .foot a{color:#fff}
 .foot .tag{margin-top:12px;font-size:12px;opacity:.75;text-align:left}
+.powered{display:block;margin-top:14px;text-align:center;color:rgba(255,255,255,.75);font-size:12.5px;text-decoration:none;letter-spacing:.02em}
+.powered b{color:#fff;font-weight:800;letter-spacing:.08em;border-bottom:1.5px solid var(--red)}
+.powered:hover b{color:var(--straw)}
+.powered:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:4px}
 .admin-link{display:block;margin:12px auto 0;background:none;border:0;color:rgba(255,255,255,.55);font:inherit;font-size:12px;text-decoration:underline;cursor:pointer}
 
 /* ADMIN */
@@ -256,6 +260,7 @@ input:focus{border-color:var(--red);box-shadow:0 0 0 4px rgba(200,37,43,.14)}
 <footer class="foot">
   <div class="loc">Location: Shai Hills<br>Call / WhatsApp <a href="tel:0542165661">054 216 5661</a></div>
   <div class="tag">WILGRAY TOUR • Safe • Fun • Memorable</div>
+  <a class="powered" id="rxl" href="https://instagram.com/YOUR_HANDLE" target="_blank" rel="noopener noreferrer">Powered by <b>RXL</b></a>
   <button type="button" class="admin-link" id="aToggle">Organizer login</button>
   <div class="admin" id="admin">
     <h3>Registered travelers</h3>
